@@ -16,6 +16,7 @@ import utilities.ConfigurationReader;
 9. Click 'Delete Account' button
 10. Verify that 'ACCOUNT DELETED!' is visible*/
 public class testCase2_LoginUserWithCorrectEmailAndPassword_Mustafa extends TestBaseBeforeClassAfterClass {
+
     @Test
     public  void loginUser() {
 
