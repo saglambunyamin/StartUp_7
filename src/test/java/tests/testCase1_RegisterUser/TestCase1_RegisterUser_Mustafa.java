@@ -20,6 +20,7 @@ package tests.testCase1_RegisterUser;
 17. Click 'Delete Account' button
 18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
 */
+
 import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -28,6 +29,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import reusableMethods.BrowserUtilities;
 import testBase.TestBaseBeforeClassAfterClass;
 
 import java.util.concurrent.TimeUnit;
@@ -84,28 +86,35 @@ public class TestCase1_RegisterUser_Mustafa extends TestBaseBeforeClassAfterClas
                 .sendKeys("May")
                 .sendKeys(Keys.TAB)
                 .sendKeys("" + faker.number().numberBetween(1900, 2021))
-                .sendKeys(Keys.TAB) .click().pause(2000)
-                .sendKeys(Keys.TAB).click().pause(2000).perform();
-                WebElement firstName=driver.findElement(By.cssSelector("input#first_name"));
-                actions.click(firstName)
-                .sendKeys(faker.name().firstName())
+                .sendKeys(Keys.TAB).pause(2000).click()
+                .sendKeys(Keys.TAB).pause(2000).click().perform();
+
+        BrowserUtilities.sleep(3);
+
+        WebElement firstName = driver.findElement(By.cssSelector("input#first_name"));
+        actions.click(firstName)
+                .sendKeys(faker.name().firstName()).pause(3000)
                 .sendKeys(Keys.TAB)
-                .sendKeys(faker.name().lastName())
+                .sendKeys(faker.name().lastName()).pause(3000)
                 .sendKeys(Keys.TAB)
-                .sendKeys(faker.company().name())
+                .sendKeys(faker.company().name()).pause(3000)
                 .sendKeys(Keys.TAB)
-                .sendKeys(faker.address().fullAddress())
+                .sendKeys(faker.address().fullAddress()).pause(3000)
                 .sendKeys(Keys.TAB)
                 .sendKeys(Keys.TAB)
-                .sendKeys("Canada")
-                .sendKeys(Keys.TAB).click()
-                .sendKeys(faker.address().state())
-                .sendKeys(Keys.TAB).click()
-                .sendKeys(faker.address().city())
-                .sendKeys(Keys.TAB).click()
-                .sendKeys(faker.address().zipCode())
-                .sendKeys(Keys.TAB).click()
-                .sendKeys(faker.phoneNumber().cellPhone())
+                .sendKeys("Canada").perform();
+
+        BrowserUtilities.sleep(3);
+
+        WebElement state = driver.findElement(By.cssSelector("input#state"));
+        actions.click(state)
+                .sendKeys(faker.address().state()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(faker.address().city()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(faker.address().zipCode()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(faker.phoneNumber().cellPhone()).pause(3000)
                 .sendKeys(Keys.TAB).click()
                 .sendKeys(Keys.ENTER)
                 .perform();
