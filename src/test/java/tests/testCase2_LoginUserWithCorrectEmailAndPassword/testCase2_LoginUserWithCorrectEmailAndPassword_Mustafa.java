@@ -1,5 +1,6 @@
 package tests.testCase2_LoginUserWithCorrectEmailAndPassword;
 
+import org.testng.annotations.Test;
 import testBase.TestBaseBeforeClassAfterClass;
 import utilities.ConfigurationReader;
 
@@ -15,7 +16,9 @@ import utilities.ConfigurationReader;
 9. Click 'Delete Account' button
 10. Verify that 'ACCOUNT DELETED!' is visible*/
 public class testCase2_LoginUserWithCorrectEmailAndPassword_Mustafa extends TestBaseBeforeClassAfterClass {
-    public static void main(String[] args) {
-        driver.get("http://automationexercise.com");
+    @Test
+    public  void loginUser() {
+
+        driver.get(ConfigurationReader.getProperty("env"));
     }
 }
