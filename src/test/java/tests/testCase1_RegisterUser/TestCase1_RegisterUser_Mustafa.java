@@ -85,9 +85,10 @@ public class TestCase1_RegisterUser_Mustafa extends TestBaseBeforeClassAfterClas
                 .sendKeys(Keys.TAB)
                 .sendKeys("" + faker.number().numberBetween(1900, 2021))
                 .sendKeys(Keys.TAB) .click().pause(2000)
-                .sendKeys(Keys.TAB).click().pause(2000)
-                .sendKeys(Keys.TAB)
-                .sendKeys(faker.name().firstName()).pause(2000)
+                .sendKeys(Keys.TAB).click().pause(2000).perform();
+                WebElement firstName=driver.findElement(By.cssSelector("input#first_name"));
+                actions.click(firstName)
+                .sendKeys(faker.name().firstName())
                 .sendKeys(Keys.TAB)
                 .sendKeys(faker.name().lastName())
                 .sendKeys(Keys.TAB)
