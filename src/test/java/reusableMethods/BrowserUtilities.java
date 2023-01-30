@@ -32,8 +32,15 @@ public class BrowserUtilities {
 
     }
 
-    public static void verifyTitle (WebDriver driver, String expectedTitle) {
-        Assert.assertEquals(driver.getTitle(), expectedTitle);
+
+    public static void verifyPageTitle(WebDriver driver,String expectedTitle){
+        String actualTitle = driver.getTitle();
+        Assert.assertEquals(actualTitle,expectedTitle, "This is a failure message. Title is not matching!");
+    }
+
+    public static void verifyPageUrl(WebDriver driver,String expectedUrl){
+        String actualUrl = driver.getCurrentUrl();
+        Assert.assertEquals(actualUrl,expectedUrl, "This is a failure message. URL is not matching!");
     }
 
 }
