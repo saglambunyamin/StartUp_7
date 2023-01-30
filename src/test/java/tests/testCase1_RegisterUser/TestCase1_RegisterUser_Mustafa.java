@@ -23,11 +23,13 @@ package tests.testCase1_RegisterUser;
 
 import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import reusableMethods.BrowserUtilities;
-import testBase.TestBaseBeforeClassAfterClass;
 
 import java.util.concurrent.TimeUnit;
 
@@ -73,13 +75,12 @@ public class TestCase1_RegisterUser_Mustafa {
         WebElement enterAccountInfo = driver.findElement(By.xpath("(//h2)[1]"));
         enterAccountInfo.isDisplayed();
 
+        BrowserUtilities.sleep(10);
+
         WebElement genderRadioButton = driver.findElement(By.cssSelector("input#id_gender1"));
-        genderRadioButton.click();
-
-        BrowserUtilities.sleep(5);
-
-        WebElement password = driver.findElement(By.cssSelector("input#password"));
-        actions.click(password)
+        actions.click(genderRadioButton)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
                 .sendKeys(faker.internet().password()).pause(3000)
                 .sendKeys(Keys.TAB)
                 .sendKeys("" + faker.number().numberBetween(1, 31)).pause(3000)
@@ -87,12 +88,9 @@ public class TestCase1_RegisterUser_Mustafa {
                 .sendKeys("May").pause(3000)
                 .sendKeys(Keys.TAB)
                 .sendKeys("" + faker.number().numberBetween(1900, 2021)).pause(3000)
-                .sendKeys(Keys.TAB).click().perform();
-
-        BrowserUtilities.sleep(5);
-
-        WebElement firstName = driver.findElement(By.cssSelector("input#first_name"));
-        actions.click(firstName)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
                 .sendKeys(faker.name().firstName()).pause(3000)
                 .sendKeys(Keys.TAB)
                 .sendKeys(faker.name().lastName()).pause(3000)
@@ -102,22 +100,17 @@ public class TestCase1_RegisterUser_Mustafa {
                 .sendKeys(faker.address().fullAddress()).pause(3000)
                 .sendKeys(Keys.TAB)
                 .sendKeys(Keys.TAB)
-                .sendKeys("Canada").perform();
-
-        BrowserUtilities.sleep(5);
-
-        WebElement state = driver.findElement(By.cssSelector("input#state"));
-        actions.click(state)
+                .sendKeys("Canada")
+                .sendKeys(Keys.TAB)
                 .sendKeys(faker.address().state()).pause(3000)
                 .sendKeys(Keys.TAB)
                 .sendKeys(faker.address().city()).pause(3000)
                 .sendKeys(Keys.TAB)
                 .sendKeys(faker.address().zipCode()).pause(3000)
                 .sendKeys(Keys.TAB)
-                .sendKeys(faker.phoneNumber().cellPhone()).pause(3000).perform();
-
-        WebElement createAccountButton=driver.findElement(By.xpath("(//button[@type=\"submit\"])[1]"));
-        createAccountButton.click();
+                .sendKeys(faker.phoneNumber().cellPhone()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.ENTER).perform();
 
         WebElement accountCreation = driver.findElement(By.xpath("(//h2)[1]"));
         accountCreation.isDisplayed();
@@ -127,29 +120,29 @@ public class TestCase1_RegisterUser_Mustafa {
             System.out.println("ACCOUNT CREATED! is not visible");
         }
 
-        //driver.switchTo().alert().dismiss();
+        driver.switchTo().alert().dismiss();
 
-        WebElement continueButton=driver.findElement(By.cssSelector("a.btn.btn-primary"));
+        WebElement continueButton = driver.findElement(By.cssSelector("a.btn.btn-primary"));
         continueButton.click();
 
-        WebElement loginText=driver.findElement(By.cssSelector("i.fa.fa-user"));
-        if(loginText.isDisplayed()){
+        WebElement loginText = driver.findElement(By.cssSelector("i.fa.fa-user"));
+        if (loginText.isDisplayed()) {
             System.out.println("'Logged in as username' is visible");
-        }else {
+        } else {
             System.out.println("'Logged in as username' is not visible");
         }
 
-        WebElement deleteAccountButton=driver.findElement(By.cssSelector("i.fa.fa-trash-o"));
+        WebElement deleteAccountButton = driver.findElement(By.cssSelector("i.fa.fa-trash-o"));
         deleteAccountButton.click();
 
-        WebElement accountDeleted= driver.findElement(By.cssSelector("h2.title.text-center"));
-        if(accountDeleted.isDisplayed()){
+        WebElement accountDeleted = driver.findElement(By.cssSelector("h2.title.text-center"));
+        if (accountDeleted.isDisplayed()) {
             System.out.println("ACCOUNT DELETED! is visible");
-        }else {
+        } else {
             System.out.println("ACCOUNT DELETED! is not visible");
         }
 
-        WebElement contButton= driver.findElement(By.cssSelector("a.btn.btn-primary"));
+        WebElement contButton = driver.findElement(By.cssSelector("a.btn.btn-primary"));
         contButton.click();
 
         System.out.println("We are done!");

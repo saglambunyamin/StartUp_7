@@ -1,6 +1,9 @@
 package reusableMethods ;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.util.Set;
@@ -42,5 +45,8 @@ public class BrowserUtilities {
         String actualUrl = driver.getCurrentUrl();
         Assert.assertEquals(actualUrl,expectedUrl, "This is a failure message. URL is not matching!");
     }
+
+
+
 
 }
