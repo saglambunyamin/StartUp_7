@@ -17,22 +17,6 @@ import java.util.concurrent.TimeUnit;
 public class TestCase1_RegisterUser_Tugba {
     /*Test Case 1: Register User
 
-
-
-
-
-
-
-
-
-
-
-13. Click 'Create Account button'
-14. Verify that 'ACCOUNT CREATED!' is visible
-15. Click 'Continue' button
-16. Verify that 'Logged in as username' is visible
-17. Click 'Delete Account' button
-18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
 */
     public static void main(String[] args) throws InterruptedException {
         WebDriverManager.chromedriver().setup();
@@ -124,10 +108,61 @@ public class TestCase1_RegisterUser_Tugba {
         String fakerLastName=faker.name().lastName();
         inputLastName.sendKeys(fakerLastName);
 
-
         WebElement inputCompanyName=driver.findElement(By.xpath("//input[@id='company']"));
         String fakerCompanyName=faker.company().name();
         inputCompanyName.sendKeys(fakerCompanyName);
+
+        WebElement inputAddress=driver.findElement(By.xpath("//input[@id='address1']"));
+        String fakerAddress=faker.address().streetAddress();
+        inputAddress.sendKeys(fakerAddress);
+
+       Select country=new Select((driver.findElement(By.xpath("//select[@id='country']"))));
+       country.selectByVisibleText("Canada");
+
+        WebElement inputState=driver.findElement(By.xpath("//input[@id='state']"));
+        String fakerState=faker.address().state();
+        inputState.sendKeys(fakerState);
+
+        WebElement inputCity=driver.findElement(By.xpath("//input[@id='city']"));
+        String fakerCity=faker.address().cityName();
+        inputCity.sendKeys(fakerCity);
+
+        WebElement inputZipcode=driver.findElement(By.xpath("//input[@id='zipcode']"));
+        String fakerZipcode=faker.address().zipCode();
+        inputZipcode.sendKeys(fakerZipcode);
+
+        WebElement inputMobile=driver.findElement(By.xpath("//input[@id='mobile_number']"));
+        String fakerMobile=faker.phoneNumber().cellPhone();
+        inputMobile.sendKeys(fakerZipcode);
+
+        Thread.sleep(3000);
+        //13. Click 'Create Account button'
+        WebElement createAccountButton=driver.findElement(By.xpath("(//button[@type='submit'])[1]"));
+        createAccountButton.click();
+
+        //14. Verify that 'ACCOUNT CREATED!' is visible
+        WebElement accountCreatedTitle=driver.findElement(By.tagName("b"));
+        System.out.println(accountCreatedTitle.isDisplayed());
+
+        //15. Click 'Continue' button
+        driver.findElement(By.xpath("//a[@class='btn btn-primary']")).click();
+
+
+        //16. Verify that 'Logged in as username' is visible
+        WebElement loggedInAsUsernameTitle=driver.findElement(By.xpath("//i[@class='fa fa-user']"));
+        System.out.println(loggedInAsUsernameTitle.isDisplayed());
+
+        //17. Click 'Delete Account' button
+        driver.findElement(By.xpath("//i[@class='fa fa-trash-o']")).click();
+
+
+        //18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
+        WebElement accountDeletedTitle=driver.findElement(By.tagName("b"));
+        System.out.println(accountDeletedTitle.isDisplayed());
+
+        driver.findElement(By.xpath("//a[@class='btn btn-primary']")).click();
+
+        driver.close();
 
 
     }
