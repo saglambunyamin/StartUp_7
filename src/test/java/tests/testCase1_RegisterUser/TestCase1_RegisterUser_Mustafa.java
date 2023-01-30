@@ -120,10 +120,16 @@ public class TestCase1_RegisterUser_Mustafa {
             System.out.println("ACCOUNT CREATED! is not visible");
         }
 
-        driver.switchTo().alert().dismiss();
 
         WebElement continueButton = driver.findElement(By.cssSelector("a.btn.btn-primary"));
         continueButton.click();
+
+
+        //AdFrame
+        driver.switchTo().frame("aswift_2");
+        driver.switchTo().frame(driver.findElement(By.cssSelector("div.creative>iframe")));
+        driver.findElement(By.id("dismiss-button")).click();
+        driver.switchTo().parentFrame();
 
         WebElement loginText = driver.findElement(By.cssSelector("i.fa.fa-user"));
         if (loginText.isDisplayed()) {
