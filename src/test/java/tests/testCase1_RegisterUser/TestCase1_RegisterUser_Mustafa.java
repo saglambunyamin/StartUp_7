@@ -151,5 +151,7 @@ public class TestCase1_RegisterUser_Mustafa {
         contButton.click();
 
         System.out.println("We are done!");
+
+        driver.quit();
     }
 }
