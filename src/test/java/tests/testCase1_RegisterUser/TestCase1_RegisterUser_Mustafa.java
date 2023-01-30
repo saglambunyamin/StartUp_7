@@ -127,6 +127,8 @@ public class TestCase1_RegisterUser_Mustafa {
             System.out.println("ACCOUNT CREATED! is not visible");
         }
 
+        //driver.switchTo().alert().dismiss();
+
         WebElement continueButton=driver.findElement(By.cssSelector("a.btn.btn-primary"));
         continueButton.click();
 
