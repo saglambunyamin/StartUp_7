@@ -48,6 +48,7 @@ public class TestCase1_RegisterUser_Mustafa {
 
         }
 
+        //Click on 'Signup / Login' button
         driver.findElement(By.cssSelector("i.fa.fa-lock")).click();
 
         WebElement newUserSignup = driver.findElement(By.xpath("(//h2)[3]"));
