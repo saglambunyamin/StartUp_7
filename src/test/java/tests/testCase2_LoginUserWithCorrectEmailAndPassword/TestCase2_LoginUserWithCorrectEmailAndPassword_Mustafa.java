@@ -43,6 +43,7 @@ public class TestCase2_LoginUserWithCorrectEmailAndPassword_Mustafa extends Test
                 .sendKeys(Keys.TAB)
                 .sendKeys(Keys.ENTER).perform();
 
+
         WebElement loginText=driver.findElement(By.cssSelector("i.fa.fa-user"));
         if(loginText.isDisplayed()){
             System.out.println("'Logged in as username' is visible");
@@ -50,8 +51,10 @@ public class TestCase2_LoginUserWithCorrectEmailAndPassword_Mustafa extends Test
             System.out.println("'Logged in as username' is not visible");
         }
 
+
         WebElement deleteAccountButton=driver.findElement(By.cssSelector("i.fa.fa-trash-o"));
         deleteAccountButton.click();
+
 
         WebElement accountDeleted= driver.findElement(By.cssSelector("h2.title.text-center"));
         if(accountDeleted.isDisplayed()){
@@ -60,6 +63,4 @@ public class TestCase2_LoginUserWithCorrectEmailAndPassword_Mustafa extends Test
             System.out.println("ACCOUNT DELETED! is not visible");
         }
     }
-
-
 }
