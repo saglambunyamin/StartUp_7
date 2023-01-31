@@ -6,15 +6,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
 import reusableMethods.BrowserUtilities;
+import testBase.TestBaseBeforeClassAfterClass;
 import utilities.ConfigurationReader;
 import utilities.Driver;
 
 import java.io.ObjectInputFilter;
 import java.util.concurrent.TimeUnit;
 
-public class testCase2_LoginUserWithCorrectEmailAndPassword_Ali {
-    public static void main(String[] args) {
+public class testCase2_LoginUserWithCorrectEmailAndPassword_Ali extends TestBaseBeforeClassAfterClass {
+    @Test
+    public  void loginUserWithCorrectEmailAndPassword_test() {
         //1. Launch browser
         //2. Navigate to url 'http://automationexercise.com'
 

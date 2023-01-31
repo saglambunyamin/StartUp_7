@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import java.util.Random;
 import java.util.Set;
 
 public class BrowserUtilities {
@@ -46,7 +47,20 @@ public class BrowserUtilities {
         Assert.assertEquals(actualUrl,expectedUrl, "This is a failure message. URL is not matching!");
     }
 
+    public static String mockEmailAndPasswordFactory() {
+        String allowedChars = "abcdefghijklmnopqrstuvwxyz" + "1234567890" + "_-.";
 
+        String temp="";
+        Random random = new Random();
+
+        while (temp.length() < 10) { // length of the random string.
+            int index = random.nextInt(39);
+            temp+=allowedChars.charAt(index);
+        }
+
+        return temp;
+
+    }
 
 
 }
