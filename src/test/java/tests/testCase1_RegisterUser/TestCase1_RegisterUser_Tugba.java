@@ -6,11 +6,14 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.bouncycastle.crypto.params.TweakableBlockCipherParameters;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import utilities.Driver;
 
 import java.sql.SQLOutput;
 import java.util.concurrent.TimeUnit;
+
+import static testBase.TestBaseBeforeClassAfterClass.actions;
 
 public class TestCase1_RegisterUser_Tugba {
     /*Test Case 1: Register User
@@ -71,6 +74,7 @@ public class TestCase1_RegisterUser_Tugba {
         String fakerPassword=faker.internet().password();
         inputPassword.sendKeys(fakerPassword);
 
+
         Select daysDropDown=new Select(driver.findElement(By.xpath("//select[@id='days']")));
         Select monthsDropDown=new Select(driver.findElement(By.xpath("//select[@id='months']")));
         Select yearsDropDown=new Select(driver.findElement(By.xpath("//select[@id='years']")));
@@ -83,8 +87,9 @@ public class TestCase1_RegisterUser_Tugba {
         monthsDropDown.selectByVisibleText("April");
         yearsDropDown.selectByValue("1986");
 
-        JavascriptExecutor js= (JavascriptExecutor) Driver.getDriver();
-        js.executeScript("window.scrollBy(0,2000)");
+        Thread.sleep(6000);
+        JavascriptExecutor jse=(JavascriptExecutor)driver;
+        jse.executeScript("window.scrollBy(0,1500)");
 
         Thread.sleep(3000);
         //10. Select checkbox 'Sign up for our newsletter!'
