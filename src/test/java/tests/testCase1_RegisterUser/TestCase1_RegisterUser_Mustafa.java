@@ -30,6 +30,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import reusableMethods.BrowserUtilities;
+import utilities.Driver;
 
 import java.util.concurrent.TimeUnit;
 
@@ -128,8 +129,9 @@ public class TestCase1_RegisterUser_Mustafa {
         //AdFrame
         driver.switchTo().frame("aswift_2");
         driver.switchTo().frame(driver.findElement(By.cssSelector("div.creative>iframe")));
-        driver.findElement(By.id("dismiss-button")).click();
+        driver.findElement(By.xpath("//div[@id='dismiss-button']")).click();
         driver.switchTo().parentFrame();
+
 
         WebElement loginText = driver.findElement(By.cssSelector("i.fa.fa-user"));
         if (loginText.isDisplayed()) {
