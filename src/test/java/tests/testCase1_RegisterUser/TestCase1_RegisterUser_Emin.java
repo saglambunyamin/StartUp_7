@@ -173,5 +173,6 @@ public class TestCase1_RegisterUser_Emin {
        System.out.println("Account Deleted is  not visible");
        }
 
+       Driver.getDriver().close();
 }
 }
