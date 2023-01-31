@@ -125,6 +125,7 @@ public class TestCase1_RegisterUser_Mustafa {
         WebElement continueButton = driver.findElement(By.cssSelector("a.btn.btn-primary"));
         continueButton.click();
 
+        BrowserUtilities.sleep(5);
 
         //AdFrame
         driver.switchTo().frame("aswift_2");
@@ -132,6 +133,7 @@ public class TestCase1_RegisterUser_Mustafa {
         driver.findElement(By.xpath("//div[@id='dismiss-button']")).click();
         driver.switchTo().parentFrame();
 
+        BrowserUtilities.sleep(5);
 
         WebElement loginText = driver.findElement(By.cssSelector("i.fa.fa-user"));
         if (loginText.isDisplayed()) {
