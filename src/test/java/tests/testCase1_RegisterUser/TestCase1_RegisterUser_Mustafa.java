@@ -20,6 +20,7 @@ package tests.testCase1_RegisterUser;
 17. Click 'Delete Account' button
 18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
 */
+
 import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -28,11 +29,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import testBase.TestBaseBeforeClassAfterClass;
+import reusableMethods.BrowserUtilities;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestCase1_RegisterUser_Mustafa extends TestBaseBeforeClassAfterClass {
+public class TestCase1_RegisterUser_Mustafa {
     public static void main(String[] args) {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
@@ -49,6 +50,7 @@ public class TestCase1_RegisterUser_Mustafa extends TestBaseBeforeClassAfterClas
 
         }
 
+        //Click on 'Signup / Login' button
         driver.findElement(By.cssSelector("i.fa.fa-lock")).click();
 
         WebElement newUserSignup = driver.findElement(By.xpath("(//h2)[3]"));
@@ -73,43 +75,84 @@ public class TestCase1_RegisterUser_Mustafa extends TestBaseBeforeClassAfterClas
         WebElement enterAccountInfo = driver.findElement(By.xpath("(//h2)[1]"));
         enterAccountInfo.isDisplayed();
 
+        BrowserUtilities.sleep(10);
+
         WebElement genderRadioButton = driver.findElement(By.cssSelector("input#id_gender1"));
-        WebElement password = driver.findElement(By.cssSelector("input#password"));
-        actions.click(genderRadioButton).perform();
-        actions.click(password)
-                .sendKeys(faker.internet().password())
+        actions.click(genderRadioButton)
                 .sendKeys(Keys.TAB)
-                .sendKeys("" + faker.number().numberBetween(1, 31))
                 .sendKeys(Keys.TAB)
-                .sendKeys("May")
+                .sendKeys(faker.internet().password()).pause(3000)
                 .sendKeys(Keys.TAB)
-                .sendKeys("" + faker.number().numberBetween(1900, 2021))
-                .sendKeys(Keys.TAB) .click().pause(2000)
-                .sendKeys(Keys.TAB).click().pause(2000).perform();
-                WebElement firstName=driver.findElement(By.cssSelector("input#first_name"));
-                actions.click(firstName)
-                .sendKeys(faker.name().firstName())
+                .sendKeys("" + faker.number().numberBetween(1, 31)).pause(3000)
                 .sendKeys(Keys.TAB)
-                .sendKeys(faker.name().lastName())
+                .sendKeys("May").pause(3000)
                 .sendKeys(Keys.TAB)
-                .sendKeys(faker.company().name())
+                .sendKeys("" + faker.number().numberBetween(1900, 2021)).pause(3000)
                 .sendKeys(Keys.TAB)
-                .sendKeys(faker.address().fullAddress())
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys(faker.name().firstName()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(faker.name().lastName()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(faker.company().name()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(faker.address().fullAddress()).pause(3000)
                 .sendKeys(Keys.TAB)
                 .sendKeys(Keys.TAB)
                 .sendKeys("Canada")
-                .sendKeys(Keys.TAB).click()
-                .sendKeys(faker.address().state())
-                .sendKeys(Keys.TAB).click()
-                .sendKeys(faker.address().city())
-                .sendKeys(Keys.TAB).click()
-                .sendKeys(faker.address().zipCode())
-                .sendKeys(Keys.TAB).click()
-                .sendKeys(faker.phoneNumber().cellPhone())
-                .sendKeys(Keys.TAB).click()
-                .sendKeys(Keys.ENTER)
-                .perform();
+                .sendKeys(Keys.TAB)
+                .sendKeys(faker.address().state()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(faker.address().city()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(faker.address().zipCode()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(faker.phoneNumber().cellPhone()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.ENTER).perform();
+
+        WebElement accountCreation = driver.findElement(By.xpath("(//h2)[1]"));
+        accountCreation.isDisplayed();
+        if (accountCreation.getText().equals("ACCOUNT CREATED!")) {
+            System.out.println("ACCOUNT CREATED! is visible");
+        } else {
+            System.out.println("ACCOUNT CREATED! is not visible");
+        }
 
 
+        WebElement continueButton = driver.findElement(By.cssSelector("a.btn.btn-primary"));
+        continueButton.click();
+
+
+        //AdFrame
+        driver.switchTo().frame("aswift_2");
+        driver.switchTo().frame(driver.findElement(By.cssSelector("div.creative>iframe")));
+        driver.findElement(By.id("dismiss-button")).click();
+        driver.switchTo().parentFrame();
+
+        WebElement loginText = driver.findElement(By.cssSelector("i.fa.fa-user"));
+        if (loginText.isDisplayed()) {
+            System.out.println("'Logged in as username' is visible");
+        } else {
+            System.out.println("'Logged in as username' is not visible");
+        }
+
+        WebElement deleteAccountButton = driver.findElement(By.cssSelector("i.fa.fa-trash-o"));
+        deleteAccountButton.click();
+
+        WebElement accountDeleted = driver.findElement(By.cssSelector("h2.title.text-center"));
+        if (accountDeleted.isDisplayed()) {
+            System.out.println("ACCOUNT DELETED! is visible");
+        } else {
+            System.out.println("ACCOUNT DELETED! is not visible");
+        }
+
+        WebElement contButton = driver.findElement(By.cssSelector("a.btn.btn-primary"));
+        contButton.click();
+
+        System.out.println("We are done!");
+
+        driver.quit();
     }
 }
