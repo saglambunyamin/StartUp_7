@@ -2,7 +2,6 @@ package tests.testCase1_RegisterUser;
 
 import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import javafx.scene.control.Tab;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
