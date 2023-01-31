@@ -4,12 +4,10 @@ import com.github.javafaker.Faker;
 import com.google.common.base.Verify;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.bouncycastle.crypto.params.TweakableBlockCipherParameters;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import utilities.Driver;
 
 import java.sql.SQLOutput;
 import java.util.concurrent.TimeUnit;
@@ -82,12 +80,11 @@ public class TestCase1_RegisterUser_Tugba {
         // index number
 
         daysDropDown.selectByValue("12");
-
-
         monthsDropDown.selectByVisibleText("April");
-
-
         yearsDropDown.selectByValue("1986");
+
+        JavascriptExecutor js= (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("window.scrollBy(0,2000)");
 
         Thread.sleep(3000);
         //10. Select checkbox 'Sign up for our newsletter!'

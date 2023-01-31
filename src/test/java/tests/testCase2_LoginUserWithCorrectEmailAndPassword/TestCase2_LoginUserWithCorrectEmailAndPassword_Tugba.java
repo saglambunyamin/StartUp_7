@@ -17,11 +17,6 @@ public class TestCase2_LoginUserWithCorrectEmailAndPassword_Tugba {
     public static void main(String[] args) throws InterruptedException {
         /*Test Case 2: Login User with correct email and password
 
-
-
-
-
-
 9. Click 'Delete Account' button
 10. Verify that 'ACCOUNT DELETED!' is visible*/
 
