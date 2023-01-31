@@ -138,9 +138,6 @@ public class TestCase1_RegisterUser_Bilal extends TestBaseBeforeClassAfterClass 
                  System.out.println("'ACCOUNT DELETED!' is NOT VISIBLE");
        }
 
-
-
-
    }
 }
 
