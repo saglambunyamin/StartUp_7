@@ -201,13 +201,13 @@ public class TestCase1_RegisterUser_Ali extends TestBaseBeforeClassAfterClass {
 
         Driver.getDriver().switchTo().frame("aswift_2");
         Driver.getDriver().switchTo().frame(Driver.getDriver().findElement(By.cssSelector("div.creative>iframe")));
-        Driver.getDriver().findElement(By.id("dismiss-button")).click();
+        Driver.getDriver().findElement(By.xpath("//div[@id='dismiss-button']")).click();
         Driver.getDriver().switchTo().parentFrame();
 
 
 
         //16. Verify that 'Logged in as username' is visible
-        WebElement isVisibleLoggedInAs=Driver.getDriver().findElement(By.xpath("//i[@class='fa fa-user']"));
+        WebElement isVisibleLoggedInAs=Driver.getDriver().findElement(By.tagName("b"));
         if (isVisibleLoggedInAs.isDisplayed()){
             System.out.println("Logged in as username is visible");
         }else {
@@ -224,8 +224,7 @@ public class TestCase1_RegisterUser_Ali extends TestBaseBeforeClassAfterClass {
             System.out.println("ACCOUNT DELETED! is visible");
         }else {
             System.out.println("ACCOUNT DELETED! is not visible");
-
         }
-
+        Driver.getDriver().close();
     }
 }
