@@ -228,3 +228,4 @@ public class TestCase1_RegisterUser_Ali extends TestBaseBeforeClassAfterClass {
         Driver.getDriver().close();
     }
 }
+
