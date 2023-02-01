@@ -1,0 +1,25 @@
+package tests.testCase3_LoginUserWithIncorrectEmailAndPassword;
+
+import com.google.common.base.Verify;
+import org.testng.annotations.Test;
+import testBase.TestBaseBeforeClassAfterClass;
+import utilities.ConfigurationReader;
+
+public class TestCase3_LoginUserWithIncorrectEmailAndPassword_Ali extends TestBaseBeforeClassAfterClass {
+    @Test
+    public void loginUserWithIncorrectEmailAndPassword_test() {
+        //Test Case 3: Login User with incorrect email and password
+        //1. Launch browser
+        //2. Navigate to url 'http://automationexercise.com'
+        driver.get(ConfigurationReader.getProperty("env"));
+
+
+        //3. Verify that home page is visible successfully
+        //4. Click on 'Signup / Login' button
+        //5. Verify 'Login to your account' is visible
+        //6. Enter incorrect email address and password
+        //7. Click 'login' button
+        //8. Verify error 'Your email or password is incorrect!' is visible
+
+    }
+}
