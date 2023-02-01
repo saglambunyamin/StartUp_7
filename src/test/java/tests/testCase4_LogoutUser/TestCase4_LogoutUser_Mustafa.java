@@ -148,5 +148,4 @@ public class TestCase4_LogoutUser_Mustafa extends TestBaseBeforeClassAfterClass 
         Assert.assertEquals(loginPageText,"Login to your account");
 
     }
-
 }
