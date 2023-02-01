@@ -10,7 +10,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import reusableMethods.BrowserUtilities;
-import utilities.Driver;
 
 import java.util.concurrent.TimeUnit;
 
