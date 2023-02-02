@@ -32,18 +32,18 @@ public class TestCase4_LogoutUser_Ali extends TestBaseBeforeClassAfterClass {
 
 
         //6. Enter correct email address and password
-        WebElement correctEmailAddress = Driver.getDriver().findElement(By.xpath("//input[@data-qa='login-email']"));
+        WebElement correctEmailAddress = driver.findElement(By.xpath("//input[@data-qa='login-email']"));
         correctEmailAddress.sendKeys(ConfigurationReader.getProperty("username"));
 
-        WebElement correctPassword = Driver.getDriver().findElement(By.xpath("//input[@name='password']"));
+        WebElement correctPassword = driver.findElement(By.xpath("//input[@name='password']"));
         correctPassword.sendKeys(ConfigurationReader.getProperty("password"));
 
         //7. Click 'login' button
-        WebElement loginButton = Driver.getDriver().findElement(By.xpath("//button[text()='Login']"));
+        WebElement loginButton = driver.findElement(By.xpath("//button[text()='Login']"));
         loginButton.click();
 
         //8. Verify that 'Logged in as username' is visible
-        WebElement verifyLoggedInAs = Driver.getDriver().findElement(By.tagName("b"));
+        WebElement verifyLoggedInAs = driver.findElement(By.tagName("b"));
         if (verifyLoggedInAs.isDisplayed()){
             System.out.println("Logged in as username is visible");
         }else {
@@ -51,6 +51,9 @@ public class TestCase4_LogoutUser_Ali extends TestBaseBeforeClassAfterClass {
         }
 
         //9. Click 'Logout' button
+        WebElement logoutButton = driver.findElement(By.xpath("//a[@href='/logout']"));
+        logoutButton.click();
+
         //10. Verify that user is navigated to login page
 
 
