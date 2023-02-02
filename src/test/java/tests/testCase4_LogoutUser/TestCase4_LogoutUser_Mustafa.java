@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import reusableMethods.BrowserUtilities;
 import testBase.TestBaseBeforeClassAfterClass;
 import utilities.ConfigurationReader;
-
 /*Test Case 4: Logout User
 1. Launch browser
 2. Navigate to url 'http://automationexercise.com'
@@ -22,7 +21,7 @@ import utilities.ConfigurationReader;
 public class TestCase4_LogoutUser_Mustafa extends TestBaseBeforeClassAfterClass {
     String emailAddress="";
     String password="";
-    @Test
+    @Test()
     public void test1() {
 /*        WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
@@ -43,7 +42,7 @@ public class TestCase4_LogoutUser_Mustafa extends TestBaseBeforeClassAfterClass 
         Assert.assertTrue(loginToYourAccountIsVisible, "Login to your account is not visible");
     }
 
-    @Test
+    @Test(dependsOnMethods = "test1")
     public void test2() {
 
         WebElement nameBox = driver.findElement(By.xpath("//input[@name='name']"));
@@ -123,7 +122,7 @@ public class TestCase4_LogoutUser_Mustafa extends TestBaseBeforeClassAfterClass 
 
     }
 
-    @Test
+    @Test(dependsOnMethods = {"test1","test2"})
     public void test3() {
         WebElement emailBox = driver.findElement(By.xpath("//input[@type=\"email\"]"));
         actions.click(emailBox)
