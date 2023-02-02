@@ -43,6 +43,13 @@ public class TestCase4_LogoutUser_Ali extends TestBaseBeforeClassAfterClass {
         loginButton.click();
 
         //8. Verify that 'Logged in as username' is visible
+        WebElement verifyLoggedInAs = Driver.getDriver().findElement(By.tagName("b"));
+        if (verifyLoggedInAs.isDisplayed()){
+            System.out.println("Logged in as username is visible");
+        }else {
+            System.out.println("Logged in as username is not visible");
+        }
+
         //9. Click 'Logout' button
         //10. Verify that user is navigated to login page
 
