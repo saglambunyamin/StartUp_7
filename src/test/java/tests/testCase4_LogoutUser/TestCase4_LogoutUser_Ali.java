@@ -38,6 +38,14 @@ public class TestCase4_LogoutUser_Ali extends TestBaseBeforeClassAfterClass {
         WebElement correctPassword = Driver.getDriver().findElement(By.xpath("//input[@name='password']"));
         correctPassword.sendKeys(ConfigurationReader.getProperty("password"));
 
+        //7. Click 'login' button
+        WebElement loginButton = Driver.getDriver().findElement(By.xpath("//button[text()='Login']"));
+        loginButton.click();
+
+        //8. Verify that 'Logged in as username' is visible
+        //9. Click 'Logout' button
+        //10. Verify that user is navigated to login page
+
 
     }
 }
