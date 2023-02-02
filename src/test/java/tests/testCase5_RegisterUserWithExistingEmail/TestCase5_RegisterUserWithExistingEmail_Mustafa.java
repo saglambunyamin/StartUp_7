@@ -124,7 +124,6 @@ public class TestCase5_RegisterUserWithExistingEmail_Mustafa extends TestBaseBef
                 .sendKeys(Keys.TAB)
                 .sendKeys(Keys.ENTER).perform();
 
-
         WebElement loginText=driver.findElement(By.xpath("//*[contains(text(),'already exist!')]"));
         if(loginText.isDisplayed()){
             System.out.println("Email Address already exist!");
