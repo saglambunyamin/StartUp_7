@@ -1,13 +1,8 @@
 package tests.testCase6_ContactUsForm;
 import com.github.javafaker.Faker;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import reusableMethods.BrowserUtilities;
 import testBase.TestBaseBeforeClassAfterClass;
 import utilities.ConfigurationReader;
 /*Test Case 6: Contact Us Form
@@ -35,7 +30,7 @@ public class TestCase6_ContactUsForm_Mustafa extends TestBaseBeforeClassAfterCla
 
         Assert.assertEquals(driver.getTitle(), "Automation Exercise", "Home page is not visible successfully.");
 
-        //Click on 'Contact Us' button
+        //Click on 'Contact Us' button, fill the related parts
         driver.findElement(By.cssSelector("i.fa.fa-envelope")).click();
 
         WebElement nameBox = driver.findElement(By.cssSelector("input[name='name']"));
@@ -47,11 +42,25 @@ public class TestCase6_ContactUsForm_Mustafa extends TestBaseBeforeClassAfterCla
                 .sendKeys(Keys.TAB)
                 .sendKeys(massage.replaceAll("Chuck Norris","Mustafa"))
                 .sendKeys(Keys.TAB).perform();
-
+        //Upload a file
         WebElement chooseFileButton= driver.findElement(By.cssSelector("input[name=\"upload_file\"]"));
+        String path = "/Users/mustafacetinkaya/Desktop/collections.png";
+        chooseFileButton.sendKeys(path);
 
+        WebElement submitButton= driver.findElement(By.cssSelector("input[name='submit']"));
+        submitButton.submit();
+
+        //Click on the ok button
+        Alert alert=driver.switchTo().alert();
+        alert.accept();
+
+        //Verify the given text
+        WebElement successMessage= driver.findElement(By.cssSelector("div.status.alert.alert-success"));
+        Assert.assertEquals(successMessage.getText(),"Success! Your details have been submitted successfully.");
+
+        //Go to the homepage
+        driver.findElement(By.cssSelector("i.fa.fa-home")).click();
+        Assert.assertEquals(driver.getTitle(), "Automation Exercise - Contact Us", "Home page is not visible successfully.");
 
     }
-
-
 }
