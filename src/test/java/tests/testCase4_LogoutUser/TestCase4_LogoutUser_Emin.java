@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import reusableMethods.BrowserUtilities;
+import utilities.ConfigurationReader;
 import utilities.Driver;
 import utilities.WebDriverFactory;
 
@@ -42,16 +43,11 @@ public class TestCase4_LogoutUser_Emin {
        Assert.assertTrue(loginAccount.isDisplayed(),"Login to your account is not visible");
 
         //6. Enter correct email address and password
-        Faker faker = new Faker();
-        WebElement emailData= driver.findElement(By.xpath("//input[@data-qa='login-email']"));
-        String incorrectEmail = faker.internet().emailAddress();
-        emailData.sendKeys(incorrectEmail);
+        WebElement correctEmail = driver.findElement(By.xpath("//input[@data-qa='login-email']"));
+        correctEmail.sendKeys(ConfigurationReader.getProperty("username"));
 
-        BrowserUtilities.sleep(2);
-
-        WebElement passwordData= driver.findElement(By.xpath("//input[@data-qa='login-password']"));
-        String incorrectPassword= faker.numerify("#############");
-        passwordData.sendKeys(incorrectPassword);
+        WebElement correctPassword = driver.findElement(By.xpath("//input[@name='password']"));
+        correctPassword.sendKeys(ConfigurationReader.getProperty("password"));
 
         BrowserUtilities.sleep(2);
 
