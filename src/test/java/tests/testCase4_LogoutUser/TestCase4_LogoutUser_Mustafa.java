@@ -1,5 +1,6 @@
 package tests.testCase4_LogoutUser;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -19,8 +20,9 @@ import utilities.ConfigurationReader;
 9. Click 'Logout' button
 10. Verify that user is navigated to login page*/
 public class TestCase4_LogoutUser_Mustafa extends TestBaseBeforeClassAfterClass {
-    String emailAddress="";
-    String password="";
+    Faker faker=new Faker();
+    String emailAddress=faker.internet().emailAddress();
+    String password=faker.internet().password();
     @Test()
     public void test1() {
 /*        WebDriverManager.chromedriver().setup();
@@ -50,7 +52,6 @@ public class TestCase4_LogoutUser_Mustafa extends TestBaseBeforeClassAfterClass 
         nameBox.sendKeys(userName);
 
         WebElement emailAddressBox = driver.findElement(By.xpath("(//input[@type='email'])[2]"));
-        emailAddress = faker.internet().emailAddress();
         emailAddressBox.sendKeys(emailAddress);
 
         WebElement signupButton = driver.findElement(By.xpath("//button[.='Signup']"));
@@ -65,7 +66,6 @@ public class TestCase4_LogoutUser_Mustafa extends TestBaseBeforeClassAfterClass 
         BrowserUtilities.sleep(2);
 
         WebElement accountPassword = driver.findElement(By.xpath("//input[@id='password']"));
-        password=faker.internet().password();
         accountPassword.sendKeys(password);
 
         Select selectDayDropdown = new Select(driver.findElement(By.xpath("//select[@id='days']")));
