@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import reusableMethods.BrowserUtilities;
 import testBase.TestBaseBeforeClassAfterClass;
 import utilities.ConfigurationReader;
-
 /*Test Case 4: Logout User
 1. Launch browser
 2. Navigate to url 'http://automationexercise.com'
