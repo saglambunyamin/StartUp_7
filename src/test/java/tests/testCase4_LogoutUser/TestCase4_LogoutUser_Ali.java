@@ -55,7 +55,10 @@ public class TestCase4_LogoutUser_Ali extends TestBaseBeforeClassAfterClass {
         logoutButton.click();
 
         //10. Verify that user is navigated to login page
+        String expectedLoginPageTitle ="Automation Exercise - Signup / Login";
+        String actualLoginPageTitle = driver.getTitle();
 
+        Assert.assertEquals(actualLoginPageTitle,expectedLoginPageTitle,"Login page is not visible");
 
     }
 }
