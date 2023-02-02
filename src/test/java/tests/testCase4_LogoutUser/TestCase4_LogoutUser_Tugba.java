@@ -8,9 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utilities.WebDriverFactory;
-
 import java.util.concurrent.TimeUnit;
-
 public class TestCase4_LogoutUser_Tugba {
     /*Test Case 4: Logout User
 1. Launch browser
