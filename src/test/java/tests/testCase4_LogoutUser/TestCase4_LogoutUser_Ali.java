@@ -25,6 +25,19 @@ public class TestCase4_LogoutUser_Ali extends TestBaseBeforeClassAfterClass {
         WebElement signupLoginButton = driver.findElement(By.xpath("//a[@href='/login']"));
         signupLoginButton.click();
 
+        //5. Verify 'Login to your account' is visible
+        WebElement loginToYourAccount = driver.findElement(By.xpath("//h2[.='Login to your account']"));
+        boolean isVisibleLoginToYourAccount=loginToYourAccount.isDisplayed();
+        Assert.assertTrue(isVisibleLoginToYourAccount,"Login to your account is not visible");
+
+
+        //6. Enter correct email address and password
+        WebElement correctEmailAddress = Driver.getDriver().findElement(By.xpath("//input[@data-qa='login-email']"));
+        correctEmailAddress.sendKeys(ConfigurationReader.getProperty("username"));
+
+        WebElement correctPassword = Driver.getDriver().findElement(By.xpath("//input[@name='password']"));
+        correctPassword.sendKeys(ConfigurationReader.getProperty("password"));
+
 
     }
 }
