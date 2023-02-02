@@ -99,9 +99,9 @@ public class TestCase2_LoginUserWithCorrectEmailAndPassword_Bilal extends TestBa
     driver.findElement(By.xpath("//button[@data-qa='login-button']")).click();
 
     //8. Verify that 'Logged in as username' is visible
-    String loggedInVerify= driver.findElement(By.xpath("/html/body/header/div/div/div/div[2]/div/ul/li[10]/a/i")).getText();
+    String loggedInVerify= driver.findElement(By.xpath("/html/body/header/div/div/div/div[2]/div/ul/li[10]/a")).getText();
     System.out.println(loggedInVerify);
-    if (loggedInVerify.equals(" Logged in as  " + userName)){
+    if (loggedInVerify.equals("Logged in as " + userName)){
         System.out.println("'Logged in as username' is VISIBLE");
     }else {
         System.out.println("'Logged in as username' is NOT VISIBLE");
@@ -117,9 +117,6 @@ public class TestCase2_LoginUserWithCorrectEmailAndPassword_Bilal extends TestBa
     }else {
         System.out.println("'ACCOUNT DELETED!' is NOT VISIBLE");
     }
-
-
-
 
 
     }
