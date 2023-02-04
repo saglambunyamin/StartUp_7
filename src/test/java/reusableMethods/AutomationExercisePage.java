@@ -13,6 +13,7 @@ public WebDriver driver= Driver.getDriver();
         PageFactory.initElements(driver,this);
     }
 
+    // MAIN PAGE LOCATORS
     @FindBy(css = "i.fa.fa-lock")//FindBy is an annotation. It is a shortcut for FindElement (By.)
     public WebElement signupLoginButton;//Bu ikili yapı standarttır. İstediğimiz kadar oluşturabiliriz. Farklı farklı locator da kullanabiliriz.
 
@@ -47,5 +48,14 @@ public WebDriver driver= Driver.getDriver();
 
     @FindBy(css = "i.fa.fa-envelope")
     public WebElement contactUsButton;
+
+
+    // ... PAGE LOCATORS
+
+
+
+
+
+    // ... PAGE LOCATORS
 
 }
