@@ -55,8 +55,5 @@ public class TestCase6_ContactUsForm_Bilal extends TestBaseBeforeClassAfterClass
         driver.findElement(By.xpath("//a[.=' Home']")).click();
         BrowserUtilities.verifyPageTitle(driver,"Automation Exercise - Contact Us");
 
-
-
-
     }
 }
