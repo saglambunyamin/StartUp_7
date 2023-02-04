@@ -21,6 +21,7 @@ import utilities.ConfigurationReader;
 8. Verify error 'Email Address already exist!' is visible*/
 public class TestCase5_RegisterUserWithExistingEmail_Mustafa extends TestBaseBeforeClassAfterClass {
     Faker faker=new Faker();
+    String userName = faker.name().username();
     String emailAddress=faker.internet().emailAddress();
     String password=faker.internet().password();
     @Test()
@@ -32,16 +33,12 @@ public class TestCase5_RegisterUserWithExistingEmail_Mustafa extends TestBaseBef
         //Click on 'Signup / Login' button
         driver.findElement(By.xpath("//a[contains(text(),'Login')]")).click();
 
-        WebElement loginToYourAccount = driver.findElement(By.cssSelector("div.login-form>h2"));
-        boolean loginToYourAccountIsVisible = loginToYourAccount.isDisplayed();
-        Assert.assertTrue(loginToYourAccountIsVisible, "Login to your account is not visible");
-    }
+        WebElement newUserSignup = driver.findElement(By.cssSelector("div.signup-form>h2"));
+        boolean newUserSignupIsVisible = newUserSignup.isDisplayed();
+        Assert.assertTrue(newUserSignupIsVisible, "New User Signup! is not visible");
 
-    @Test(dependsOnMethods = "test1")
-    public void test2() {
-
+        //Firstly create a new account, log out and again try to create a new account with existing info
         WebElement nameBox = driver.findElement(By.xpath("//input[@name='name']"));
-        String userName = faker.name().username();
         nameBox.sendKeys(userName);
 
         WebElement emailAddressBox = driver.findElement(By.xpath("(//input[@type='email'])[2]"));
@@ -113,31 +110,25 @@ public class TestCase5_RegisterUserWithExistingEmail_Mustafa extends TestBaseBef
         BrowserUtilities.sleep(3);
         driver.findElement(By.xpath("//a[.=' Logout']")).click();
 
+        System.out.println("These user infos are created. We will try to use them again to verify the expected error\n"+userName+"\n"+emailAddress);
     }
 
-    @Test(dependsOnMethods = {"test1","test2"})
-    public void test3() {
-        WebElement emailBox = driver.findElement(By.xpath("//input[@type=\"email\"]"));
-        actions.click(emailBox)
-                .sendKeys(emailAddress)
+    @Test(dependsOnMethods = {"test1"})
+    public void test2() {
+        //Step-6: Enter name and already registered email address, verify the error
+        WebElement nameBox = driver.findElement(By.xpath("//input[@name='name']"));
+        actions.click(nameBox)
+                .sendKeys(userName)
                 .sendKeys(Keys.TAB)
-                .sendKeys(password)
+                .sendKeys(emailAddress)
                 .sendKeys(Keys.TAB)
                 .sendKeys(Keys.ENTER).perform();
 
-
-        WebElement loginText=driver.findElement(By.cssSelector("i.fa.fa-user"));
+        WebElement loginText=driver.findElement(By.xpath("//*[contains(text(),'already exist!')]"));
         if(loginText.isDisplayed()){
-            System.out.println("'Logged in as username' is visible");
+            System.out.println("Email Address already exist!");
         }else {
-            System.out.println("'Logged in as username' is not visible");
+            System.out.println("Email Address already exist! is not visible");
         }
-
-        //Logout
-        driver.findElement(By.xpath("//a[.=' Logout']")).click();
-
-        String loginPageText=driver.findElement(By.xpath("//*[contains(text(),'account')]")).getText();
-        Assert.assertEquals(loginPageText,"Login to your account");
-
     }
 }
