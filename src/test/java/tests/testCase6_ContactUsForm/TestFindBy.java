@@ -4,40 +4,42 @@ import reusableMethods.AutomationExercisePage;
 import reusableMethods.BrowserUtilities;
 import utilities.ConfigurationReader;
 
-public class TestFindBy extends AutomationExercisePage {
+public class TestFindBy {
+
+    AutomationExercisePage pageObject=new AutomationExercisePage();
     @Test
     public void test(){
-        driver.get(ConfigurationReader.getProperty("env"));
+        pageObject.driver.get(ConfigurationReader.getProperty("env"));
 
-        homeButton.click();
+        pageObject.homeButton.click();
         BrowserUtilities.sleep(3);
 
-        signupLoginButton.click();
-        driver.navigate().back();
+        pageObject.signupLoginButton.click();
+        pageObject.driver.navigate().back();
         BrowserUtilities.sleep(3);
 
-        chartButton.click();
-        driver.navigate().back();
+        pageObject.chartButton.click();
+        pageObject.driver.navigate().back();
         BrowserUtilities.sleep(3);
 
-        productButton.click();
-        driver.navigate().back();
+        pageObject.productButton.click();
+        pageObject.driver.navigate().back();
         BrowserUtilities.sleep(3);
 
-        testCasesButton.click();
-        driver.navigate().back();
+        pageObject.testCasesButton.click();
+        pageObject.driver.navigate().back();
         BrowserUtilities.sleep(3);
 
-        apiTestingButton.click();
-        driver.navigate().back();
+        pageObject.apiTestingButton.click();
+        pageObject.driver.navigate().back();
         BrowserUtilities.sleep(3);
 
-        videoTutorialsButton.click();
-        driver.navigate().back();
+        pageObject.videoTutorialsButton.click();
+        pageObject.driver.navigate().back();
         BrowserUtilities.sleep(3);
 
-        contactUsButton.click();
-        driver.navigate().back();
+        pageObject.contactUsButton.click();
+        pageObject.driver.navigate().back();
         BrowserUtilities.sleep(3);
 
     }
