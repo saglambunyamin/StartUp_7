@@ -1,6 +1,4 @@
 package tests.testCase6_ContactUsForm;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.testng.annotations.Test;
 import reusableMethods.AutomationExercisePage;
 import reusableMethods.BrowserUtilities;
