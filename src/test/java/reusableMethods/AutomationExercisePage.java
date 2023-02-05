@@ -4,15 +4,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import testBase.TestBaseBeforeClassAfterClass;
 import utilities.Driver;
 
 public class AutomationExercisePage {
+
 public WebDriver driver= Driver.getDriver();
     public AutomationExercisePage() {
         PageFactory.initElements(driver,this);
     }
 
+    // MAIN PAGE LOCATORS
     @FindBy(css = "i.fa.fa-lock")//FindBy is an annotation. It is a shortcut for FindElement (By.)
     public WebElement signupLoginButton;//Bu ikili yapı standarttır. İstediğimiz kadar oluşturabiliriz. Farklı farklı locator da kullanabiliriz.
 
@@ -29,11 +30,15 @@ public WebDriver driver= Driver.getDriver();
     public WebElement productButton;
 
 
-    @FindBy(xpath = "(//a[@href=\"/test_cases\"])[1]")
+    //@FindBy(xpath = "(//a[@href=\"/test_cases\"])[1]")
+    //@FindBy(css = "li:nth-child(5) a i")
+    @FindBy(css = ".navbar-nav li:nth-child(5) a")
     public WebElement testCasesButton;
 
 
-    @FindBy(xpath = "//a[.=' API Testing']")
+    //@FindBy(xpath = "//a[.=' API Testing']")
+    //@FindBy(css = "li:nth-child(6) a i")
+    @FindBy(css = ".navbar-nav li:nth-child(6) a")
     public WebElement apiTestingButton;
 
 
@@ -43,5 +48,14 @@ public WebDriver driver= Driver.getDriver();
 
     @FindBy(css = "i.fa.fa-envelope")
     public WebElement contactUsButton;
+
+
+    // ... PAGE LOCATORS
+
+
+
+
+
+    // ... PAGE LOCATORS
 
 }

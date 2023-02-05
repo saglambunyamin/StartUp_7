@@ -36,9 +36,8 @@ public class TestCase5_RegisterUserWithExistingEmail_Bilal extends TestBaseBefor
         driver.findElement(By.xpath("//button[@data-qa='signup-button']")).click();
         BrowserUtilities.sleep(2);
 
-
         //8. Verify error 'Email Address already exist!' is visible
-        String actualEmailExistMessage= driver.findElement(By.xpath("//b[.='Email Address already exist!']")).getText();
+        String actualEmailExistMessage= driver.findElement(By.xpath("//p[.='Email Address already exist!']")).getText();
         Assert.assertEquals(actualEmailExistMessage,"Email Address already exist!");
 
 
