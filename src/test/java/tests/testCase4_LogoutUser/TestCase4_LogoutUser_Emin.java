@@ -13,6 +13,8 @@ import utilities.WebDriverFactory;
 
 import java.util.concurrent.TimeUnit;
 
+import static testBase.TestBaseBeforeClassAfterClass.driver;
+
 public class TestCase4_LogoutUser_Emin {
 
     WebDriver driver;
@@ -61,18 +63,19 @@ public class TestCase4_LogoutUser_Emin {
         loginButton.click();
 
         //8. Verify that 'Logged in as username' is visible
+        WebElement loggedMessage = driver.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[10]/a"));
+        System.out.println("loggedMessage.isDisplayed() = " + loggedMessage.isDisplayed());
 
         //9. Click 'Logout' button
+        WebElement logOutButton = driver.findElement(By.xpath("//a[@href='/logout']"));
+        logOutButton.click();
 
         //10. Verify that user is navigated to login page
-
-
-
-
-
+        String verifyLoginPage = driver.getTitle();
+        System.out.println("verifyLoginPage = " + verifyLoginPage);
+        Assert.assertEquals(verifyLoginPage, "Automation Exercise - Signup / Login");
 
         driver.close();
-
 
     }
 }
