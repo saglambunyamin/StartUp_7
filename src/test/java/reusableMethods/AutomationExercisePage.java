@@ -32,7 +32,8 @@ public WebDriver driver= Driver.getDriver();
 
     //@FindBy(xpath = "(//a[@href=\"/test_cases\"])[1]")
     //@FindBy(css = "li:nth-child(5) a i")
-    @FindBy(css = ".navbar-nav li:nth-child(5) a")
+    //@FindBy(css = ".navbar-nav li:nth-child(5) a")
+    @FindBy(css = "div.item.active div.col-sm-6 a.test_cases_list")
     public WebElement testCasesButton;
 
 
