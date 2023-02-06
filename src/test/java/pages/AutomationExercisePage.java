@@ -8,9 +8,8 @@ import utilities.Driver;
 
 public class AutomationExercisePage {
 
-public WebDriver driver= Driver.getDriver();
     public AutomationExercisePage() {
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(Driver.getDriver(),this);
     }
 
     // MAIN PAGE LOCATORS
