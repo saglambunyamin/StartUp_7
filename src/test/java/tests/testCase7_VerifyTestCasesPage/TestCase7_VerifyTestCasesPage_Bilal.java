@@ -2,7 +2,7 @@ package tests.testCase7_VerifyTestCasesPage;
 
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import reusableMethods.BrowserUtilities;
+import utilities.BrowserUtilities;
 import utilities.ConfigurationReader;
 import utilities.Driver;
 
