@@ -58,6 +58,19 @@ public class TestCase8_VerifyAllProductsAndProductDetailPage_Ali {
 
         //9. Verify that detail detail is visible: product name, category, price, availability, condition, brand
 
+        WebElement productName=Driver.getDriver().findElement(By.xpath("//h2[.='Blue Top']")) ;
+        WebElement category=Driver.getDriver().findElement(By.xpath("//p[.='Category: Women > Tops']")) ;
+        WebElement price=Driver.getDriver().findElement(By.xpath("//span[.='Rs. 500']")) ;
+        WebElement availability=Driver.getDriver().findElement(By.xpath("//b[.='Availability:']")) ;
+        WebElement condition=Driver.getDriver().findElement(By.xpath("//b[.='Condition:']")) ;
+        WebElement brand =Driver.getDriver().findElement(By.xpath("//b[.='Brand:']"));
+
+        Assert.assertTrue(productName.isDisplayed());
+        Assert.assertTrue(category.isDisplayed());
+        Assert.assertTrue(price.isDisplayed());
+        Assert.assertTrue(availability.isDisplayed());
+        Assert.assertTrue(condition.isDisplayed());
+        Assert.assertTrue(brand.isDisplayed());
 
 
 
