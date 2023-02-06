@@ -20,7 +20,7 @@ import utilities.Driver;
 */
 public class TestCase8_VerifyAllProductsAndProductDetailPage_Mustafa {
     @Test
-    public void testCase7() {
+    public void testCase8() {
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
 
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise");

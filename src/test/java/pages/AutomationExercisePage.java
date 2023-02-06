@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,7 +8,7 @@ import utilities.Driver;
 public class AutomationExercisePage {
 
     public AutomationExercisePage() {
-        PageFactory.initElements(Driver.getDriver(),this);
+        PageFactory.initElements(Driver.getDriver(), this);
     }
 
     // MAIN PAGE LOCATORS
@@ -51,12 +50,21 @@ public class AutomationExercisePage {
     public WebElement contactUsButton;
 
 
-    // ... PAGE LOCATORS
+    // Test Case 9: Search Product
+    @FindBy(css = "input#search_product")
+    public WebElement searchProductBox;
 
+    @FindBy(css = "button#submit_search")
+    public WebElement searchButton;
 
+    @FindBy(xpath = "(//h2)[3]")
+    public WebElement searchProductsHeader;
 
+    @FindBy(css = "div.brands_products")
+    public WebElement searchResult;
 
 
     // ... PAGE LOCATORS
 
 }
+
