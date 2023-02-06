@@ -38,7 +38,8 @@ public class AutomationExercisePage {
 
     //@FindBy(xpath = "//a[.=' API Testing']")
     //@FindBy(css = "li:nth-child(6) a i")
-    @FindBy(css = ".navbar-nav li:nth-child(6) a")
+    //@FindBy(css = ".navbar-nav li:nth-child(6) a")
+    @FindBy(css = "div.item.active div.col-sm-6 a.apis_list")
     public WebElement apiTestingButton;
 
 
