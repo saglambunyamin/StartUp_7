@@ -1,4 +1,4 @@
-package tests.testCase7_VerifyTestCasesPage;
+package tests.tests.testCase7_VerifyTestCasesPage;
 
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
@@ -15,6 +15,7 @@ public class TestCase7_VerifyTestCasesPage_Bilal {
         //1. Launch browser
         //2. Navigate to url 'http://automationexercise.com'
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
+
 
         //3. Verify that home page is visible successfully
         BrowserUtilities.verifyPageTitle(Driver.getDriver(),"Automation Exercise");
