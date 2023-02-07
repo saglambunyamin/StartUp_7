@@ -1,4 +1,4 @@
-package tests.testCase6_ContactUsForm;
+package tests.tests.testCase6_ContactUsForm;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.Alert;
