@@ -1,6 +1,7 @@
 package tests.tests.testCase8_VerifyAllProductsAndProductDetailPage;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AutomationExercisePage;
 import utilities.BrowserUtilities;
@@ -21,11 +22,12 @@ import utilities.Driver;
 public class TestCase8_VerifyAllProductsAndProductDetailPage_Mustafa {
     @Test
     public void testCase8() {
+        AutomationExercisePage pageObject = new AutomationExercisePage();
+
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
 
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise");
 
-        AutomationExercisePage pageObject = new AutomationExercisePage();
         pageObject.productButton.click();
 
         //Close the ad window
@@ -34,7 +36,20 @@ public class TestCase8_VerifyAllProductsAndProductDetailPage_Mustafa {
         Driver.getDriver().findElement(By.cssSelector("div#dismiss-button")).click();
         Driver.getDriver().switchTo().parentFrame();
 
-        BrowserUtilities.verifyPageTitle(Driver.getDriver(),"Automation Exercise - All Products");
+        BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise - All Products");
+
+        //7. Click on 'View Product' of first product
+        pageObject.viewProductBlueTop.click();
+        //8. User is landed to product detail page
+        BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise - Product Details");
+
+        //9. Verify that detail is visible: product name, category, price, availability, condition, brand
+        Assert.assertTrue(pageObject.productNameBlueTop.isDisplayed());
+        Assert.assertTrue(pageObject.categoryBlueTop.isDisplayed());
+        Assert.assertTrue(pageObject.priceBlueTop.isDisplayed());
+        Assert.assertTrue(pageObject.availabilityBlueTop.isDisplayed());
+        Assert.assertTrue(pageObject.conditionBlueTop.isDisplayed());
+        Assert.assertTrue(pageObject.brandBlueTop.isDisplayed());
 
         Driver.closeDriver();
     }
