@@ -5,7 +5,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import reusableMethods.BrowserUtilities;
+import utilities.BrowserUtilities;
 import utilities.Driver;
 import utilities.WebDriverFactory;
 
@@ -35,8 +35,6 @@ public class TestCase6_ContactUsForm_Emin {
         String name= faker.name().fullName();
         WebElement enterName= Driver.getDriver().findElement(By.xpath("//input[@data-qa='name']"));
         enterName.sendKeys(name);
-
-        BrowserUtilities.sleep(2);
 
         String email= faker.internet().emailAddress();
         WebElement enterEmail= Driver.getDriver().findElement(By.xpath("//input[@data-qa='email']"));
