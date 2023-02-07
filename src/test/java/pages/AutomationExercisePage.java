@@ -1,9 +1,13 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
+
+import java.util.List;
 
 public class AutomationExercisePage {
 
@@ -50,6 +54,29 @@ public class AutomationExercisePage {
     public WebElement contactUsButton;
 
 
+    // Test Case 8: Product Details
+    @FindBy(xpath = "(//a[contains(text(),'View Product')])[1]")
+    public WebElement viewProductBlueTop;
+
+    @FindBy(xpath = "//h2[.='Blue Top']")
+    public WebElement productNameBlueTop ;
+
+    @FindBy(xpath = "//p[.='Category: Women > Tops']")
+    public WebElement categoryBlueTop ;
+
+    @FindBy(xpath = "//span[.='Rs. 500']")
+    public WebElement priceBlueTop ;
+
+    @FindBy(xpath = "//b[.='Availability:']")
+    public WebElement availabilityBlueTop ;
+
+    @FindBy(xpath = "//b[.='Condition:']")
+    public WebElement conditionBlueTop ;
+
+    @FindBy(xpath = "//b[.='Brand:']")
+    public WebElement brandBlueTop;
+
+
     // Test Case 9: Search Product
     @FindBy(css = "input#search_product")
     public WebElement searchProductBox;
@@ -61,8 +88,10 @@ public class AutomationExercisePage {
     public WebElement searchProductsHeader;
 
     @FindBy(css = "div.brands_products")
-    public WebElement searchResult;
+    public WebElement brandsInfoColumn;
 
+    @FindAll(@FindBy(css = "div.productinfo.text-center"))
+    public List<WebElement> allSearchResults;
 
     // ... PAGE LOCATORS
 

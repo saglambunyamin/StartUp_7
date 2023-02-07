@@ -1,9 +1,11 @@
 package utilities;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 import java.util.Random;
@@ -62,5 +64,60 @@ public class BrowserUtilities {
 
     }
 
+    public static Faker getFaker() {
+
+        Faker faker;
+        return faker = new Faker();
+    }
+
+    public static Actions getActions() {
+
+        Actions actions;
+        return actions = new Actions(Driver.getDriver());
+    }
+
+    //========Hover Over=====//
+    public static void hoverOver(WebElement element) {
+        Actions actions = new Actions(Driver.getDriver());
+        actions.moveToElement(element).pause(1000).perform();
+    }
+
+    //====== JS Scroll Click ====//
+    public static void jsScrollClick(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        try {
+            element.click();
+        } catch (Exception e) {
+            js.executeScript("arguments[0].scrollIntoView(true);", element);
+            js.executeScript("arguments[0].click()", element);
+            sleep(1);
+        }
+    }
+
+    //====== JS Scroll ====//
+    public static void jsScroll(WebElement element) {
+
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public static Random random() { //
+
+        Random random;
+        return random = new Random();
+    }
+
+
+    //====== js ======//
+    public static void jsClick(WebElement webElement){
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("arguments[0].click();", webElement);
+        try {
+            webElement.click();
+        } catch (Exception e) {
+            JavascriptExecutor executor = (JavascriptExecutor) Driver.getDriver();
+            executor.executeScript("arguments[0].click();", webElement);
+        }
+    }
 
 }

@@ -1,6 +1,8 @@
 package tests.tests.testCase9_SearchProduct;
 
+import com.google.common.base.Verify;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AutomationExercisePage;
@@ -40,13 +42,23 @@ public class TestCase9_SearchProduct_Mustafa {
 
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise - All Products");
 
-        pageObject.searchProductBox.sendKeys("bag");
+        pageObject.searchProductBox.sendKeys("Men");
         pageObject.searchButton.click();
 
+        //7. Verify 'SEARCHED PRODUCTS' is visible
         Assert.assertTrue(pageObject.searchProductsHeader.isDisplayed());
 
-        Assert.assertTrue(pageObject.searchResult.isDisplayed());
+        //8. Verify all the products related to search are visible
+        BrowserUtilities.jsScroll(pageObject.brandsInfoColumn);
+        int count=1;
+        for (WebElement eachSearchResult : pageObject.allSearchResults) {
+            BrowserUtilities.hoverOver(eachSearchResult);
+            Assert.assertTrue(eachSearchResult.isDisplayed(),count+". search result is hovered. It is not visible");
+            System.out.println(count+". search result is hovered. It is visible");
+            count++;
+        }
 
+        Driver.closeDriver();
     }
 
 }
