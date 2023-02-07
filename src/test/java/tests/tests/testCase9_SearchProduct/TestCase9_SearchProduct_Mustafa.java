@@ -35,10 +35,7 @@ public class TestCase9_SearchProduct_Mustafa {
         pageObject.productButton.click();
 
         //Close the ad window
-        Driver.getDriver().switchTo().frame("aswift_5");
-        Driver.getDriver().switchTo().frame("ad_iframe");
-        Driver.getDriver().findElement(By.cssSelector("div#dismiss-button")).click();
-        Driver.getDriver().switchTo().parentFrame();
+        pageObject.closeAdWindow();
 
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise - All Products");
 

@@ -5,8 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import utilities.BrowserUtilities;
 import utilities.Driver;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AutomationExercisePage {
@@ -75,6 +79,25 @@ public class AutomationExercisePage {
 
     @FindBy(xpath = "//b[.='Brand:']")
     public WebElement brandBlueTop;
+
+    public void verifySelectedProductDetailsVisibility() {
+        List<WebElement> allDetails=new ArrayList<>();
+        allDetails.addAll(Arrays.asList(brandBlueTop,conditionBlueTop,availabilityBlueTop,priceBlueTop,productNameBlueTop,categoryBlueTop));
+
+        for (WebElement eachDetail : allDetails) {
+            Assert.assertTrue(eachDetail.isDisplayed(),eachDetail.getText()+" is not visible");
+            System.out.println(eachDetail.getText()+" is displayed");
+        }
+
+
+    }
+
+    public void closeAdWindow(){
+        Driver.getDriver().switchTo().frame("aswift_5");
+        Driver.getDriver().switchTo().frame("ad_iframe");
+        Driver.getDriver().findElement(By.cssSelector("div#dismiss-button")).click();
+        Driver.getDriver().switchTo().parentFrame();
+    }
 
 
     // Test Case 9: Search Product

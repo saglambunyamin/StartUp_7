@@ -31,25 +31,18 @@ public class TestCase8_VerifyAllProductsAndProductDetailPage_Mustafa {
         pageObject.productButton.click();
 
         //Close the ad window
-        Driver.getDriver().switchTo().frame("aswift_5");
-        Driver.getDriver().switchTo().frame("ad_iframe");
-        Driver.getDriver().findElement(By.cssSelector("div#dismiss-button")).click();
-        Driver.getDriver().switchTo().parentFrame();
+        pageObject.closeAdWindow();
 
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise - All Products");
 
         //7. Click on 'View Product' of first product
-        pageObject.viewProductBlueTop.click();
+        BrowserUtilities.jsScrollClick(pageObject.viewProductBlueTop);
+
         //8. User is landed to product detail page
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise - Product Details");
 
         //9. Verify that detail is visible: product name, category, price, availability, condition, brand
-        Assert.assertTrue(pageObject.productNameBlueTop.isDisplayed());
-        Assert.assertTrue(pageObject.categoryBlueTop.isDisplayed());
-        Assert.assertTrue(pageObject.priceBlueTop.isDisplayed());
-        Assert.assertTrue(pageObject.availabilityBlueTop.isDisplayed());
-        Assert.assertTrue(pageObject.conditionBlueTop.isDisplayed());
-        Assert.assertTrue(pageObject.brandBlueTop.isDisplayed());
+        pageObject.verifySelectedProductDetailsVisibility();
 
         Driver.closeDriver();
     }
