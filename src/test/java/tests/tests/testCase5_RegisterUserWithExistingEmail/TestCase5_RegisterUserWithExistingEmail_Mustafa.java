@@ -22,7 +22,8 @@ import utilities.ConfigurationReader;
 public class TestCase5_RegisterUserWithExistingEmail_Mustafa extends TestBaseBeforeClassAfterClass {
     Faker faker=new Faker();
     String userName = faker.name().username();
-    String emailAddress=faker.internet().emailAddress();
+
+    public String emailAddress=faker.internet().emailAddress();
     String password=faker.internet().password();
     @Test()
     public void test1() {

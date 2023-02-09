@@ -124,7 +124,16 @@ public class AutomationExercisePage {
     @FindAll(@FindBy(css = "div.productinfo.text-center"))
     public List<WebElement> allSearchResults;
 
-    // ... PAGE LOCATORS
+    // Test Case 10
+
+    @FindBy(css = "div.col-sm-3.col-sm-offset-1 div h2")
+    public WebElement subscriptionText;
+
+    @FindBy(css = "input#susbscribe_email")
+    public WebElement subscriptionMailBox;
+
+    @FindBy(css = "div.form-row div#success-subscribe div.alert-success.alert")
+    public WebElement successfullySubscribedText;
 
 }
 
