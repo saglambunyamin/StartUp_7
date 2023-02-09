@@ -29,7 +29,7 @@ public class AutomationExercisePage {
 
 
     @FindBy(css = "i.fa.fa-shopping-cart")
-    public WebElement chartButton;
+    public WebElement cartButton;
 
 
     @FindBy(css = "i.material-icons.card_travel")
@@ -134,6 +134,34 @@ public class AutomationExercisePage {
 
     @FindBy(css = "div.form-row div#success-subscribe div.alert-success.alert")
     public WebElement successfullySubscribedText;
+
+    //Test Case 12
+
+    @FindBy (css = "div.overlay-content a[data-product-id='1'] i.fa.fa-shopping-cart")
+    public WebElement hoveredAddCartButton1;
+
+    @FindBy (css = "div.overlay-content a[data-product-id='2'] i.fa.fa-shopping-cart")
+    public WebElement hoveredAddCartButton2;
+
+    @FindBy(css = "img[src='/get_product_picture/1']")
+    public WebElement firstProductBlueTop ;
+
+    @FindBy(css = "img[src='/get_product_picture/2']")
+    public WebElement secondProductMenTShirt ;
+
+
+    @FindBy(xpath = "//*[contains(text(),'Continue Shopping')]")
+    public WebElement continueShoppingButton ;
+
+    @FindBy(css = "p.text-center a[href=\"/view_cart\"]")
+    public WebElement viewCartButton ;
+
+    @FindBy(xpath = "//tbody/tr[1]/td[2]/h4/a")
+    public WebElement firstAddedCartItem ;
+
+
+    @FindBy(xpath = "//tbody/tr[2]/td[2]/h4/a")
+    public WebElement secondAddedCartItem ;
 
 }
 
