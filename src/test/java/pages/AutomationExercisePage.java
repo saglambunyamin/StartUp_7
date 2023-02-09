@@ -104,6 +104,14 @@ public class AutomationExercisePage {
     @FindBy(css = "input#search_product")
     public WebElement searchProductBox;
 
+    @FindBy(css = "div.productinfo.text-center p")
+    public List<WebElement> allProducts;
+
+    public void selectRandomItemFromAllProductsAndSearchForIt(){
+        int randomItemIndexFromAllProductsList=BrowserUtilities.random().nextInt(allProducts.size());
+        searchProductBox.sendKeys(allProducts.get(randomItemIndexFromAllProductsList).getText());
+        searchButton.click();
+    }
     @FindBy(css = "button#submit_search")
     public WebElement searchButton;
 
