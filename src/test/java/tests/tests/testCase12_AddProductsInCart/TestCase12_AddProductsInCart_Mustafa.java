@@ -1,13 +1,14 @@
 package tests.tests.testCase12_AddProductsInCart;
 
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AutomationExercisePage;
-import tests.tests.testCase5_RegisterUserWithExistingEmail.TestCase5_RegisterUserWithExistingEmail_Mustafa;
 import utilities.BrowserUtilities;
 import utilities.ConfigurationReader;
 import utilities.Driver;
+
 /*Test Case 12: Add Products in Cart
 1. Launch browser
 2. Navigate to url 'http://automationexercise.com'
@@ -22,8 +23,8 @@ import utilities.Driver;
 public class TestCase12_AddProductsInCart_Mustafa {
 
 
-@Test
-public void testCase12() {
+    @Test
+    public void testCase12() {
         AutomationExercisePage pageObject = new AutomationExercisePage();
 
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
@@ -53,6 +54,10 @@ public void testCase12() {
         Assert.assertTrue(pageObject.secondAddedCartItem.isDisplayed());
 
         //10. Verify their prices, quantity and total price*/
+        for (int i = 3; i < 6; i++) {
+            WebElement verifyPriceQuantityTotal = Driver.getDriver().findElement(By.xpath("//tbody/tr[1]/td[" + i + "]"));
+            Assert.assertTrue(verifyPriceQuantityTotal.isDisplayed());
+        }
 
         Driver.getDriver().close();
     }
