@@ -1,11 +1,11 @@
 package tests.tests.testCase14_PlaceOrderRegisterWhileCheckout;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AutomationExercisePage;
 import utilities.BrowserUtilities;
 import utilities.ConfigurationReader;
 import utilities.Driver;
+
 /*Test Case 14: Place Order: Register while Checkout
 1. Launch browser
 2. Navigate to url 'http://automationexercise.com'
@@ -27,37 +27,40 @@ import utilities.Driver;
 18. Verify success message 'Your order has been placed successfully!'
 19. Click 'Delete Account' button
 20. Verify 'ACCOUNT DELETED!' and click 'Continue' button*/
-public class TestCase14_PlaceOrderRegisterWhileCheckout {
+public class TestCase14_PlaceOrderRegisterWhileCheckout_Mustafa {
 
 
     @Test
-    public void testCase13() {
+    public void testCase14() {
+        /*1. Launch browser
+        2. Navigate to url 'http://automationexercise.com'
+        3. Verify that home page is visible successfully*/
         AutomationExercisePage pageObject = new AutomationExercisePage();
 
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
 
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise");
 
-        //4. Click 'View Product' for any product on home page
-        for (int i = 0; i < 5; i++) {
-            pageObject.selectAnyViewProductButtonOnTheHomePage();
+        //4. Add products to cart
+        pageObject.addItemWithGivenQuantity(5);
 
-        }
+        //5. Click 'Cart' button
+        BrowserUtilities.jsScrollClick(pageObject.cartButton);
 
-        pageObject.closeAdWindow();
+        //6.Verify that cart page is displayed
+        pageObject.verifyThatCartPageIsDisplayed();
 
-        //5. Verify product detail is opened
-        pageObject.verifyAllProductDetailsVisibility();
+        //7.Click Proceed To Checkout
+        pageObject.proceedToCheckout.click();
 
-        /*6. Increase quantity to 4
-          7. Click 'Add to cart' button*/
-        pageObject.increaseItemQuantityInCart(4);
+        //8. Click 'Register / Login' button
+        pageObject.registerLoginButton.click();
 
-        //Click 'View Cart' button
-        pageObject.viewCartButton.click();
+        //9. Fill all details in Signup and create account
+        pageObject.createNewUserAccount();
 
-        //Verify that product is displayed in cart page with exact quantity
-        Assert.assertEquals(pageObject.productQuantityBoxInCart.getText(),"4","Product quantity ia not verified");
+        //10. Verify 'ACCOUNT CREATED!' and click 'Continue' button
+        pageObject.verifyAccountCreation();
 
         Driver.getDriver().close();
     }

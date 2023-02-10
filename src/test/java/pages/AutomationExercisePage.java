@@ -100,6 +100,12 @@ public class AutomationExercisePage {
         Driver.getDriver().switchTo().parentFrame();
     }
 
+    public void closeAdWindowByClickingXButton() {
+        Driver.getDriver().switchTo().frame("aswift_5");
+        Driver.getDriver().findElement(By.cssSelector("div#ad_position_box div#dismiss-button path")).click();
+        Driver.getDriver().switchTo().parentFrame();
+    }
+
 
     // Test Case 9: Search Product
     @FindBy(css = "input#search_product")
@@ -220,13 +226,117 @@ public class AutomationExercisePage {
                 .sendKeys("a")
                 .keyUp(Keys.COMMAND)
                 .sendKeys(Keys.DELETE)
-                .sendKeys(quantity+"")
+                .sendKeys(quantity + "")
                 .sendKeys(Keys.TAB)
                 .sendKeys(Keys.ENTER).perform();
     }
 
     @FindBy(xpath = "//tbody/tr[1]/td[4]/button")
     public WebElement productQuantityBoxInCart;
+
+    //Test Case 14
+    @FindBy(css = "button.btn.btn-default.cart i.fa.fa-shopping-cart")
+    public WebElement addToCartButton;
+
+    public void addItemWithGivenQuantity(int quantity) {
+        for (int i = 0; i < quantity; i++) {
+            selectAnyViewProductButtonOnTheHomePage();
+            if (!Driver.getDriver().getTitle().equals("Automation Exercise - Product Details") || (!addToCartButton.isDisplayed())) {
+                try {
+                    closeAdWindow();
+                } catch (Exception e) {
+                    closeAdWindowByClickingXButton();
+                }
+
+            }
+            addToCartButton.click();
+            Driver.getDriver().navigate().back();
+            Driver.getDriver().navigate().refresh();
+
+        }
+    }
+
+    @FindBy(css = "ol.breadcrumb li.active")
+    public WebElement shoppingCartText;
+
+    public void verifyThatCartPageIsDisplayed() {
+        Assert.assertEquals(shoppingCartText.getText(), "Shopping Cart", "Verify that cart page is not displayed");
+    }
+
+    @FindBy(css = "div.col-sm-6 a.btn.btn-default.check_out")
+    public WebElement proceedToCheckout;
+
+    @FindBy(css = "div.modal-body a[href=\"/login\"]")
+    public WebElement registerLoginButton;
+
+    @FindBy(css = "div.signup-form input[data-qa=\"signup-name\"]")
+    public WebElement newUserSignupNameBox;
+
+    @FindBy(css = "div.signup-form input[data-qa=\"signup-email\"]")
+    public WebElement newUserSignupEmailBox;
+
+    @FindBy(css = "input#id_gender1")
+    public WebElement genderRadioButton;
+
+
+    @FindBy(xpath = "(//h2)[1]")
+    public WebElement enterAccountInfoText;
+
+
+    public void createNewUserAccount() {
+        BrowserUtilities.getActions().click(newUserSignupNameBox)
+                .sendKeys(BrowserUtilities.getFaker().name().fullName())
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().internet().emailAddress())
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.ENTER).perform();
+
+        Assert.assertTrue(enterAccountInfoText.isDisplayed());
+
+        BrowserUtilities.getActions().click(genderRadioButton)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().internet().password()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys("" + BrowserUtilities.getFaker().number().numberBetween(1, 31)).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys("May").pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys("" + BrowserUtilities.getFaker().number().numberBetween(1900, 2021)).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().name().firstName()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().name().lastName()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().company().name()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().address().fullAddress()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys("Canada")
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().address().state()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().address().city()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().address().zipCode()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().phoneNumber().cellPhone()).pause(3000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.ENTER).perform();
+
+    }
+
+    @FindBy(xpath = "(//h2)[1]")
+    public WebElement accountCreationText;
+
+    public void verifyAccountCreation(){
+        Assert.assertEquals(accountCreationText.getText(),"ACCOUNT CREATED!","ACCOUNT CREATED! is not visible");
+    }
+
+
 
 }
 
