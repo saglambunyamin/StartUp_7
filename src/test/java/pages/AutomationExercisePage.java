@@ -404,7 +404,7 @@ public class AutomationExercisePage {
 
     }
 
-    @FindBy(css = "div#success_message div.alert-success.alert")
+    @FindBy(css = "div.col-sm-9.col-sm-offset-1 p")
     public WebElement orderSuccessfullyPlacedMessage;
 
 
