@@ -336,6 +336,7 @@ public class AutomationExercisePage {
     public void verifyAccountCreation() {
         Assert.assertEquals(accountCreationText.getText(), "ACCOUNT CREATED!", "ACCOUNT CREATED! is not visible");
         continueButton.click();
+        Driver.getDriver().navigate().refresh();
     }
 
     @FindBy(css = "i.fa.fa-user")
