@@ -83,6 +83,7 @@ public class TestCase14_PlaceOrderRegisterWhileCheckout_Mustafa {
         pageObject.enterPaymentDetails();
 
         //18. Verify success message 'Your order has been placed successfully!'
+        BrowserUtilities.jsScroll(pageObject.subscriptionMailBox);
         Assert.assertTrue(pageObject.orderSuccessfullyPlacedMessage.isDisplayed());
 
         //19. Click 'Delete Account' button

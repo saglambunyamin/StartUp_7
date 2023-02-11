@@ -243,9 +243,10 @@ public class AutomationExercisePage {
             selectAnyViewProductButtonOnTheHomePage();
             if (!Driver.getDriver().getTitle().equals("Automation Exercise - Product Details") || (!addToCartButton.isDisplayed())) {
                 try {
-                    closeAdWindow();
+                    Driver.getDriver().navigate().refresh();
+                    selectAnyViewProductButtonOnTheHomePage();
                 } catch (Exception e) {
-                    closeAdWindowByClickingXButton();
+                    e.getMessage();
                 }
 
             }
@@ -296,34 +297,34 @@ public class AutomationExercisePage {
         BrowserUtilities.getActions().click(genderRadioButton)
                 .sendKeys(Keys.TAB)
                 .sendKeys(Keys.TAB)
-                .sendKeys(BrowserUtilities.getFaker().internet().password()).pause(3000)
+                .sendKeys(BrowserUtilities.getFaker().internet().password()).pause(1000)
                 .sendKeys(Keys.TAB)
-                .sendKeys("" + BrowserUtilities.getFaker().number().numberBetween(1, 31)).pause(3000)
+                .sendKeys("" + BrowserUtilities.getFaker().number().numberBetween(1, 31)).pause(1000)
                 .sendKeys(Keys.TAB)
-                .sendKeys("May").pause(3000)
+                .sendKeys("May").pause(1000)
                 .sendKeys(Keys.TAB)
-                .sendKeys("" + BrowserUtilities.getFaker().number().numberBetween(1900, 2021)).pause(3000)
+                .sendKeys("" + BrowserUtilities.getFaker().number().numberBetween(1900, 2021)).pause(1000)
                 .sendKeys(Keys.TAB)
                 .sendKeys(Keys.TAB)
                 .sendKeys(Keys.TAB)
-                .sendKeys(BrowserUtilities.getFaker().name().firstName()).pause(3000)
+                .sendKeys(BrowserUtilities.getFaker().name().firstName()).pause(1000)
                 .sendKeys(Keys.TAB)
-                .sendKeys(BrowserUtilities.getFaker().name().lastName()).pause(3000)
+                .sendKeys(BrowserUtilities.getFaker().name().lastName()).pause(1000)
                 .sendKeys(Keys.TAB)
-                .sendKeys(BrowserUtilities.getFaker().company().name()).pause(3000)
+                .sendKeys(BrowserUtilities.getFaker().company().name()).pause(1000)
                 .sendKeys(Keys.TAB)
-                .sendKeys(BrowserUtilities.getFaker().address().fullAddress()).pause(3000)
+                .sendKeys(BrowserUtilities.getFaker().address().fullAddress()).pause(1000)
                 .sendKeys(Keys.TAB)
                 .sendKeys(Keys.TAB)
                 .sendKeys("Canada")
                 .sendKeys(Keys.TAB)
-                .sendKeys(BrowserUtilities.getFaker().address().state()).pause(3000)
+                .sendKeys(BrowserUtilities.getFaker().address().state()).pause(1000)
                 .sendKeys(Keys.TAB)
-                .sendKeys(BrowserUtilities.getFaker().address().city()).pause(3000)
+                .sendKeys(BrowserUtilities.getFaker().address().city()).pause(1000)
                 .sendKeys(Keys.TAB)
-                .sendKeys(BrowserUtilities.getFaker().address().zipCode()).pause(3000)
+                .sendKeys(BrowserUtilities.getFaker().address().zipCode()).pause(1000)
                 .sendKeys(Keys.TAB)
-                .sendKeys(BrowserUtilities.getFaker().phoneNumber().cellPhone()).pause(3000)
+                .sendKeys(BrowserUtilities.getFaker().phoneNumber().cellPhone()).pause(1000)
                 .sendKeys(Keys.TAB)
                 .sendKeys(Keys.ENTER).perform();
 
@@ -342,14 +343,22 @@ public class AutomationExercisePage {
 
 
     public void verifyDeliveryAddress() {
-        for (int i = 1; i < 9; i++) {
+        for (int i = 1; i < 5; i++) {
+            WebElement addressDetails = Driver.getDriver().findElement(By.cssSelector("div.col-xs-12.col-sm-6 ul#address_delivery li:nth-child(" + i + ")"));
+            Assert.assertTrue(addressDetails.isDisplayed());
+        }
+        for (int i = 6; i < 9; i++) {
             WebElement addressDetails = Driver.getDriver().findElement(By.cssSelector("div.col-xs-12.col-sm-6 ul#address_delivery li:nth-child(" + i + ")"));
             Assert.assertTrue(addressDetails.isDisplayed());
         }
     }
 
     public void verifyBillingAddress() {
-        for (int i = 1; i < 9; i++) {
+        for (int i = 1; i < 5; i++) {
+            WebElement billingAddressDetails = Driver.getDriver().findElement(By.cssSelector("div.col-xs-12.col-sm-6 ul#address_invoice li:nth-child(" + i + ")"));
+            Assert.assertTrue(billingAddressDetails.isDisplayed());
+        }
+        for (int i = 6; i < 9; i++) {
             WebElement billingAddressDetails = Driver.getDriver().findElement(By.cssSelector("div.col-xs-12.col-sm-6 ul#address_invoice li:nth-child(" + i + ")"));
             Assert.assertTrue(billingAddressDetails.isDisplayed());
         }
@@ -391,6 +400,7 @@ public class AutomationExercisePage {
                 .sendKeys(BrowserUtilities.getFaker().number().numberBetween(2019, 2029) + "")
                 .sendKeys(Keys.TAB)
                 .click(payAndConfirmOrder).perform();
+
     }
 
     @FindBy(css = "div#success_message div.alert-success.alert")
