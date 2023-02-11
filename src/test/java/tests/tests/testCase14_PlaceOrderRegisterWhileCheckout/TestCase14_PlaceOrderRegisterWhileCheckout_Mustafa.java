@@ -1,5 +1,6 @@
 package tests.tests.testCase14_PlaceOrderRegisterWhileCheckout;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AutomationExercisePage;
 import utilities.BrowserUtilities;
@@ -42,7 +43,7 @@ public class TestCase14_PlaceOrderRegisterWhileCheckout_Mustafa {
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise");
 
         //4. Add products to cart
-        pageObject.addItemWithGivenQuantity(5);
+        pageObject.addItemWithGivenQuantity(3);
 
         //5. Click 'Cart' button
         BrowserUtilities.jsScrollClick(pageObject.cartButton);
@@ -61,6 +62,34 @@ public class TestCase14_PlaceOrderRegisterWhileCheckout_Mustafa {
 
         //10. Verify 'ACCOUNT CREATED!' and click 'Continue' button
         pageObject.verifyAccountCreation();
+
+        //11. Verify ' Logged in as username' at top
+        Assert.assertTrue(pageObject.loggedInAsUsernameText.isDisplayed());
+
+        //12. Click 'Cart' button
+        pageObject.cartButton.click();
+
+        //13. Click 'Proceed To Checkout' button
+        pageObject.proceedToCheckout.click();
+
+        //14. Verify Address Details and Review Your Order
+        pageObject.verifyDeliveryAddress();
+        pageObject.verifyBillingAddress();
+
+        //15. Enter description in comment text area and click 'Place Order'
+        pageObject.addCommentAboutOrder();
+
+        //16. Enter payment details: Name on Card, Card Number, CVC, Expiration date
+        pageObject.enterPaymentDetails();
+
+        //18. Verify success message 'Your order has been placed successfully!'
+        Assert.assertTrue(pageObject.orderSuccessfullyPlacedMessage.isDisplayed());
+
+        //19. Click 'Delete Account' button
+        pageObject.deleteAccountButton.click();
+
+        //20. Verify 'ACCOUNT DELETED!' and click 'Continue' button
+        pageObject.verifyAccountDeletedTextAndClickContButton();
 
         Driver.getDriver().close();
     }

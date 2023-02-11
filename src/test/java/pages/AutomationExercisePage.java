@@ -332,11 +332,85 @@ public class AutomationExercisePage {
     @FindBy(xpath = "(//h2)[1]")
     public WebElement accountCreationText;
 
-    public void verifyAccountCreation(){
-        Assert.assertEquals(accountCreationText.getText(),"ACCOUNT CREATED!","ACCOUNT CREATED! is not visible");
+    public void verifyAccountCreation() {
+        Assert.assertEquals(accountCreationText.getText(), "ACCOUNT CREATED!", "ACCOUNT CREATED! is not visible");
+        continueButton.click();
     }
 
+    @FindBy(css = "i.fa.fa-user")
+    public WebElement loggedInAsUsernameText;
 
+
+    public void verifyDeliveryAddress() {
+        for (int i = 1; i < 9; i++) {
+            WebElement addressDetails = Driver.getDriver().findElement(By.cssSelector("div.col-xs-12.col-sm-6 ul#address_delivery li:nth-child(" + i + ")"));
+            Assert.assertTrue(addressDetails.isDisplayed());
+        }
+    }
+
+    public void verifyBillingAddress() {
+        for (int i = 1; i < 9; i++) {
+            WebElement billingAddressDetails = Driver.getDriver().findElement(By.cssSelector("div.col-xs-12.col-sm-6 ul#address_invoice li:nth-child(" + i + ")"));
+            Assert.assertTrue(billingAddressDetails.isDisplayed());
+        }
+    }
+
+    @FindBy(css = "textarea.form-control")
+    public WebElement textArea;
+
+
+    @FindBy(css = "a.btn.btn-default.check_out")
+    public WebElement addCommentPlaceOrder;
+
+    public void addCommentAboutOrder() {
+        for (int i = 0; i < 5; i++) {
+            textArea.sendKeys(BrowserUtilities.getFaker().chuckNorris().fact());
+
+        }
+        addCommentPlaceOrder.click();
+    }
+
+    @FindBy(css = "input[name=\"name_on_card\"]")
+    public WebElement paymentNameOnCard;
+
+
+    @FindBy(css = "button#submit")
+    public WebElement payAndConfirmOrder;
+
+
+    public void enterPaymentDetails() {
+        BrowserUtilities.getActions().click(paymentNameOnCard)
+                .sendKeys(BrowserUtilities.getFaker().name().fullName())
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().business().creditCardNumber())
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().number().numberBetween(100, 999) + "")
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().number().numberBetween(1, 31) + "")
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().number().numberBetween(2019, 2029) + "")
+                .sendKeys(Keys.TAB)
+                .click(payAndConfirmOrder).perform();
+    }
+
+    @FindBy(css = "div#success_message div.alert-success.alert")
+    public WebElement orderSuccessfullyPlacedMessage;
+
+
+    @FindBy(css = "a[href=\"/delete_account\"]")
+    public WebElement deleteAccountButton;
+
+
+    @FindBy(css = "h2.title.text-center")
+    public WebElement accountDeletedText;
+
+    @FindBy(css = "a[data-qa=\"continue-button\"]")
+    public WebElement continueButton;
+
+    public void verifyAccountDeletedTextAndClickContButton() {
+        Assert.assertTrue(accountDeletedText.isDisplayed(), "ACCOUNT DELETED! is not visible");
+        continueButton.click();
+    }
 
 }
 
