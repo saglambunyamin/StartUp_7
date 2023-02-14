@@ -34,7 +34,6 @@ public class TestCase7_VerifyTestCasesPage_Benjamin {
 
         //5. Verify user is navigated to test cases page successfully
         Assert.assertEquals(Driver.getDriver().getTitle(), "Automation Practice Website for UI Testing - Test Cases");
-
     }
 
 }
