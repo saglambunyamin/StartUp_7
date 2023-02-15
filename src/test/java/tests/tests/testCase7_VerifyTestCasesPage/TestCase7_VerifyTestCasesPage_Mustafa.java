@@ -31,6 +31,6 @@ public class TestCase7_VerifyTestCasesPage_Mustafa {
 
         BrowserUtilities.verifyPageTitle(Driver.getDriver(),"Automation Practice Website for UI Testing - Test Cases");
 
-        Driver.closeDriver();
+       Driver.closeDriver();
     }
 }
