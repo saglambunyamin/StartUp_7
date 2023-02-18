@@ -249,19 +249,10 @@ public class AutomationExercisePage {
     public void addItemWithGivenQuantity(int quantity) {
         for (int i = 0; i < quantity; i++) {
             selectAnyViewProductButtonOnTheHomePage();
-            if (!Driver.getDriver().getTitle().equals("Automation Exercise - Product Details") || (!addToCartButton.isDisplayed())) {
-                try {
-                    Driver.getDriver().navigate().refresh();
-                    selectAnyViewProductButtonOnTheHomePage();
-                } catch (Exception e) {
-                    e.getMessage();
-                }
-
-            }
-            addToCartButton.click();
+            BrowserUtilities.sleep(2);
+            BrowserUtilities.jsScrollClick(addToCartButton);
             Driver.getDriver().navigate().back();
             Driver.getDriver().navigate().refresh();
-
         }
     }
 

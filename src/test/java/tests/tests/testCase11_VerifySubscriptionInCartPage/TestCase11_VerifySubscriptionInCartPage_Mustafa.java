@@ -19,7 +19,6 @@ import utilities.Driver;
 8. Verify success message 'You have been successfully subscribed!' is visible*/
 public class TestCase11_VerifySubscriptionInCartPage_Mustafa {
 
-
     @Test(groups = "TestCase5_RegisterUserWithExistingEmail_Mustafa.test1()")//Before testCase10() go to the testCase5() and create a new account. Then use new email info for this test case
     public void testCase11() {
         AutomationExercisePage pageObject = new AutomationExercisePage();
