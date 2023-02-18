@@ -31,9 +31,7 @@ public class TestCase12_AddProductsInCart_Mustafa {
 
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise");
 
-        pageObject.productButton.click();
-
-        pageObject.closeAdWindow();
+        pageObject.forceToClickIfAdDisplayed(pageObject.productButton);
 
         /*5. Hover over first product and click 'Add to cart'
           6. Click 'Continue Shopping' button*/
