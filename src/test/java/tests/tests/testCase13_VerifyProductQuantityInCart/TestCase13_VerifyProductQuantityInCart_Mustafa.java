@@ -34,7 +34,8 @@ public class TestCase13_VerifyProductQuantityInCart_Mustafa {
         //4. Click 'View Product' for any product on home page
         pageObject.selectAnyViewProductButtonOnTheHomePage();
 
-        pageObject.closeAdWindow();
+        //Get rid of the ad window by refreshing
+        Driver.getDriver().navigate().refresh();
 
         //5. Verify product detail is opened
         pageObject.verifyAllProductDetailsVisibility();

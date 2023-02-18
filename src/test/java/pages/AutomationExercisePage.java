@@ -184,6 +184,8 @@ public class AutomationExercisePage {
     public void selectAnyViewProductButtonOnTheHomePage() {
         int anyViewProductButtonIndexOnTheHomePage = BrowserUtilities.random().nextInt(allViewProductButtonsOnTheHomePage.size());
         BrowserUtilities.jsScrollClick(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
+        Driver.getDriver().navigate().refresh();
+        BrowserUtilities.jsScrollClick(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
     }
 
     @FindBy(css = "div.product-information h2")
