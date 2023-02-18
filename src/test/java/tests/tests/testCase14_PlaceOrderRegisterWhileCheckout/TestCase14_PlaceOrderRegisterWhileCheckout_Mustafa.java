@@ -30,7 +30,6 @@ import utilities.Driver;
 20. Verify 'ACCOUNT DELETED!' and click 'Continue' button*/
 public class TestCase14_PlaceOrderRegisterWhileCheckout_Mustafa {
 
-
     @Test
     public void testCase14() {
         /*1. Launch browser

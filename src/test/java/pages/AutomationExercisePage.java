@@ -183,7 +183,8 @@ public class AutomationExercisePage {
 
     public void selectAnyViewProductButtonOnTheHomePage() {
         int anyViewProductButtonIndexOnTheHomePage = BrowserUtilities.random().nextInt(allViewProductButtonsOnTheHomePage.size());
-        BrowserUtilities.jsScrollClick(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
+        Driver.getDriver().navigate().refresh();
+        BrowserUtilities.jsScroll(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
         Driver.getDriver().navigate().refresh();
         BrowserUtilities.jsScrollClick(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
     }
@@ -248,8 +249,8 @@ public class AutomationExercisePage {
 
     public void addItemWithGivenQuantity(int quantity) {
         for (int i = 0; i < quantity; i++) {
+            Driver.getDriver().navigate().refresh();
             selectAnyViewProductButtonOnTheHomePage();
-            BrowserUtilities.sleep(2);
             BrowserUtilities.jsScrollClick(addToCartButton);
             Driver.getDriver().navigate().back();
             Driver.getDriver().navigate().refresh();
