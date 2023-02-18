@@ -32,9 +32,11 @@ public class TestCase10_VerifySubscriptionInHomePage_Mustafa {
 
         Assert.assertEquals(pageObject.subscriptionText.getText(),"SUBSCRIPTION","SUBSCRIPTION text is nor verified!");
 
+        //6. Enter email address in input and click arrow button (Create a new account and use it's data for subscription)
         pageObject.subscriptionMailBox.sendKeys(new TestCase5_RegisterUserWithExistingEmail_Mustafa().emailAddress+ Keys.ENTER);
         System.out.println(new TestCase5_RegisterUserWithExistingEmail_Mustafa().emailAddress);
 
+        //7. Verify success message 'You have been successfully subscribed!' is visible
         Assert.assertEquals(pageObject.successfullySubscribedText.getText(),"You have been successfully subscribed!","SUBSCRIPTION verification is not passed!");
         System.out.println(pageObject.successfullySubscribedText.getText());
 
