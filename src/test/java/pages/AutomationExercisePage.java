@@ -93,10 +93,20 @@ public class AutomationExercisePage {
 
     }
 
+    @FindBy(css = "iframe#aswift_4")
+    public WebElement adWindowIframe;
+
     public void closeAdWindow() {
-        Driver.getDriver().switchTo().frame("aswift_5");
-        Driver.getDriver().switchTo().frame("ad_iframe");
-        Driver.getDriver().findElement(By.cssSelector("div#dismiss-button")).click();
+        if (adWindowIframe.isDisplayed()) {
+            Driver.getDriver().switchTo().frame("aswift_5");
+            Driver.getDriver().switchTo().frame("ad_iframe");
+            if (Driver.getDriver().findElement(By.xpath("//div[@id='dismiss-button']")).isDisplayed()) {
+                Driver.getDriver().findElement(By.cssSelector("div#dismiss-button")).click();
+            } else {
+                Driver.getDriver().findElement(By.xpath("//div[@id='ad_position_box div#dismiss-button path']")).click();
+            }
+        }
+
         Driver.getDriver().switchTo().parentFrame();
     }
 
@@ -120,7 +130,7 @@ public class AutomationExercisePage {
         searchButton.click();
     }
 
-    public void forceToClickIfAdDisplayed(WebElement element){
+    public void forceToClickIfAdDisplayed(WebElement element) {
         BrowserUtilities.jsScrollClick(element);
         Driver.getDriver().navigate().refresh();
         BrowserUtilities.jsScrollClick(element);
@@ -249,9 +259,14 @@ public class AutomationExercisePage {
 
     public void addItemWithGivenQuantity(int quantity) {
         for (int i = 0; i < quantity; i++) {
-            Driver.getDriver().navigate().refresh();
             selectAnyViewProductButtonOnTheHomePage();
-            BrowserUtilities.jsScrollClick(addToCartButton);
+            try {
+                BrowserUtilities.jsScrollClick(addToCartButton);
+
+            } catch (Exception exception) {
+                Driver.getDriver().navigate().refresh();
+                BrowserUtilities.jsScrollClick(addToCartButton);
+            }
             Driver.getDriver().navigate().back();
             Driver.getDriver().navigate().refresh();
         }
@@ -335,7 +350,7 @@ public class AutomationExercisePage {
 
     public void verifyAccountCreation() {
         Assert.assertEquals(accountCreationText.getText(), "ACCOUNT CREATED!", "ACCOUNT CREATED! is not visible");
-        continueButton.click();
+        BrowserUtilities.jsScrollClick(continueButton);
         Driver.getDriver().navigate().refresh();
     }
 
