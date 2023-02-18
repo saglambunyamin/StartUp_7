@@ -29,10 +29,8 @@ public class TestCase9_SearchProduct_Mustafa {
 
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise");
 
-        pageObject.productButton.click();
-
-        //Close the ad window
-        pageObject.closeAdWindow();
+        // 4. Click on 'Products' button
+        pageObject.forceToClickIfAdDisplayed(pageObject.productButton);
 
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise - All Products");
 

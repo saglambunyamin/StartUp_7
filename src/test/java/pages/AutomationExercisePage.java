@@ -120,6 +120,12 @@ public class AutomationExercisePage {
         searchButton.click();
     }
 
+    public void forceToClickIfAdDisplayed(WebElement element){
+        BrowserUtilities.jsScrollClick(element);
+        Driver.getDriver().navigate().refresh();
+        BrowserUtilities.jsScrollClick(element);
+    }
+
     @FindBy(css = "button#submit_search")
     public WebElement searchButton;
 
