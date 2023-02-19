@@ -1,7 +1,5 @@
 package tests.tests.testCase8_VerifyAllProductsAndProductDetailPage;
 
-import org.openqa.selenium.By;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AutomationExercisePage;
 import utilities.BrowserUtilities;
@@ -28,10 +26,7 @@ public class TestCase8_VerifyAllProductsAndProductDetailPage_Mustafa {
 
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise");
 
-        pageObject.productButton.click();
-
-        //Close the ad window
-        pageObject.closeAdWindow();
+        pageObject.forceToClickIfAdDisplayed(pageObject.productButton);
 
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise - All Products");
 
@@ -39,6 +34,7 @@ public class TestCase8_VerifyAllProductsAndProductDetailPage_Mustafa {
         BrowserUtilities.jsScrollClick(pageObject.viewProductBlueTop);
 
         //8. User is landed to product detail page
+        pageObject.closeAdWindowByCheckingPageTitle("Automation Exercise - Product Details");
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise - Product Details");
 
         //9. Verify that detail is visible: product name, category, price, availability, condition, brand
