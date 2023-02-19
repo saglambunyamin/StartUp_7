@@ -1,13 +1,18 @@
 package tests.tests.testCase9_SearchProduct;
 
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.MyPages.HomePage;
-import pages.MyPages.ProductsPage;
+import pages.MyPages_Bilal.HomePage;
+import pages.MyPages_Bilal.ProductsPage;
 import utilities.BrowserUtilities;
 import utilities.ConfigurationReader;
 import utilities.Driver;
+
+import java.util.List;
+
 
 public class TestCase9_SearchProduct_Bilal {
 
@@ -25,7 +30,7 @@ public class TestCase9_SearchProduct_Bilal {
         HomePage homePage= new HomePage();
         homePage.productsButton.click();
         BrowserUtilities.sleep(3);
-        homePage.closeAdPage_AfterHomePage();
+        homePage.closeAdPage_AfterHomePage2();
 
         //    5. Verify user is navigated to ALL PRODUCTS page successfully
         BrowserUtilities.verifyPageTitle(Driver.getDriver(),"Automation Exercise - All Products");
@@ -40,6 +45,13 @@ public class TestCase9_SearchProduct_Bilal {
 
         //    8. Verify all the products related to search are visible
 
+        List<WebElement> list=Driver.getDriver().findElements(By.xpath("//p[contains(.,'Top')]"));
 
+
+        for (WebElement element : ProductsPage.topList) {
+            System.out.println(element.getText()+" is visible");
+        }
+
+        Driver.closeDriver();
     }
 }
