@@ -1,9 +1,11 @@
-package pages.MyPages;
+package pages.MyPages_Bilal;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
+
+import java.util.List;
 
 public class ProductsPage {
 
@@ -20,6 +22,11 @@ public class ProductsPage {
 
     @FindBy(xpath = "//h2[@class='title text-center']")
     public WebElement searchedProductsText;
+
+    @FindBy(xpath = "//p[contains(.,'Top')]")
+    public static List<WebElement> topList;
+
+
 
 
 
