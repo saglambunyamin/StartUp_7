@@ -108,17 +108,19 @@ public class AutomationExercisePage {
     @FindBy(css = "iframe#aswift_3")
     public WebElement adWindowIframe3;
 
-    public void closeAdWindowByCheckingFrames() {
-        if (adWindowIframe1.isDisplayed()) {
-            Driver.getDriver().navigate().refresh();
-        } else if (adWindowIframe2.isDisplayed()) {
-            Driver.getDriver().navigate().refresh();
-        } else if (adWindowIframe3.isDisplayed()) {
-            Driver.getDriver().navigate().refresh();
-        } else if (adWindowIframe4.isDisplayed()) {
-            Driver.getDriver().navigate().refresh();
-        } else if (adWindowIframe5.isDisplayed()) {
-            Driver.getDriver().navigate().refresh();
+    public void closeAdWindowByCheckingFrames( String pageTitle) {
+        if (Driver.getDriver().getTitle().equals(pageTitle)){
+            if (adWindowIframe1.isDisplayed()) {
+                Driver.getDriver().navigate().refresh();
+            } else if (adWindowIframe2.isDisplayed()) {
+                Driver.getDriver().navigate().refresh();
+            } else if (adWindowIframe3.isDisplayed()) {
+                Driver.getDriver().navigate().refresh();
+            } else if (adWindowIframe4.isDisplayed()) {
+                Driver.getDriver().navigate().refresh();
+            } else if (adWindowIframe5.isDisplayed()) {
+                Driver.getDriver().navigate().refresh();
+            }
         }
         Driver.getDriver().switchTo().parentFrame();
     }

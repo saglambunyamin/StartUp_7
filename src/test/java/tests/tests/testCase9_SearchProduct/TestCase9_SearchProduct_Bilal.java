@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.AutomationExercisePage;
 import pages.MyPages_Bilal.HomePage;
 import pages.MyPages_Bilal.ProductsPage;
 import utilities.BrowserUtilities;
@@ -28,9 +29,10 @@ public class TestCase9_SearchProduct_Bilal {
 
         //    4. Click on 'Products' button
         HomePage homePage= new HomePage();
+        BrowserUtilities.jsScroll(homePage.productsButton);
+        AutomationExercisePage pageObject=new AutomationExercisePage();
+        pageObject.closeAdWindowByCheckingPageTitle("Automation Exercise");
         homePage.productsButton.click();
-        BrowserUtilities.sleep(3);
-        homePage.closeAdPage_AfterHomePage2();
 
         //    5. Verify user is navigated to ALL PRODUCTS page successfully
         BrowserUtilities.verifyPageTitle(Driver.getDriver(),"Automation Exercise - All Products");
@@ -44,9 +46,6 @@ public class TestCase9_SearchProduct_Bilal {
         Assert.assertEquals(productsPage.searchedProductsText.getText(),"SEARCHED PRODUCTS");
 
         //    8. Verify all the products related to search are visible
-
-        List<WebElement> list=Driver.getDriver().findElements(By.xpath("//p[contains(.,'Top')]"));
-
 
         for (WebElement element : ProductsPage.topList) {
             System.out.println(element.getText()+" is visible");

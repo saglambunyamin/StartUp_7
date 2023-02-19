@@ -22,7 +22,7 @@ Test Case 9: Search Product
 */
 public class TestCase9_SearchProduct_Mustafa {
     @Test
-    public void testCase8() {
+    public void testCase9() {
         AutomationExercisePage pageObject = new AutomationExercisePage();
 
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
