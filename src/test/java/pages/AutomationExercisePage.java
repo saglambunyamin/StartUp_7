@@ -94,19 +94,32 @@ public class AutomationExercisePage {
     }
 
     @FindBy(css = "iframe#aswift_4")
-    public WebElement adWindowIframe;
+    public WebElement adWindowIframe4;
 
-    public void closeAdWindow() {
-        if (adWindowIframe.isDisplayed()) {
-            Driver.getDriver().switchTo().frame("aswift_5");
-            Driver.getDriver().switchTo().frame("ad_iframe");
-            if (Driver.getDriver().findElement(By.xpath("//div[@id='dismiss-button']")).isDisplayed()) {
-                Driver.getDriver().findElement(By.cssSelector("div#dismiss-button")).click();
-            } else {
-                Driver.getDriver().findElement(By.xpath("//div[@id='ad_position_box div#dismiss-button path']")).click();
-            }
+    @FindBy(css = "iframe#aswift_1")
+    public WebElement adWindowIframe1;
+
+    @FindBy(css = "iframe#aswift_5")
+    public WebElement adWindowIframe5;
+
+    @FindBy(css = "iframe#aswift_2")
+    public WebElement adWindowIframe2;
+
+    @FindBy(css = "iframe#aswift_3")
+    public WebElement adWindowIframe3;
+
+    public void closeAdWindowByCheckingFrames() {
+        if (adWindowIframe1.isDisplayed()) {
+            Driver.getDriver().navigate().refresh();
+        } else if (adWindowIframe2.isDisplayed()) {
+            Driver.getDriver().navigate().refresh();
+        } else if (adWindowIframe3.isDisplayed()) {
+            Driver.getDriver().navigate().refresh();
+        } else if (adWindowIframe4.isDisplayed()) {
+            Driver.getDriver().navigate().refresh();
+        } else if (adWindowIframe5.isDisplayed()) {
+            Driver.getDriver().navigate().refresh();
         }
-
         Driver.getDriver().switchTo().parentFrame();
     }
 
@@ -114,6 +127,12 @@ public class AutomationExercisePage {
         Driver.getDriver().switchTo().frame("aswift_5");
         Driver.getDriver().findElement(By.cssSelector("div#ad_position_box div#dismiss-button path")).click();
         Driver.getDriver().switchTo().parentFrame();
+    }
+
+    public void closeAdWindowByCheckingPageTitle(String pageTitle) {
+        if (!Driver.getDriver().getTitle().equals(pageTitle)) {
+            Driver.getDriver().navigate().refresh();
+        }
     }
 
 
@@ -188,16 +207,19 @@ public class AutomationExercisePage {
 
     //Test Case 13
 
-    @FindBy(xpath = "//i[@class='fa fa-plus-square']")
+    //@FindBy(xpath = "//i[@class='fa fa-plus-square']")
+    @FindBy(xpath = "//a[.='View Product']")
     public List<WebElement> allViewProductButtonsOnTheHomePage;
 
     public void selectAnyViewProductButtonOnTheHomePage() {
         int anyViewProductButtonIndexOnTheHomePage = BrowserUtilities.random().nextInt(allViewProductButtonsOnTheHomePage.size());
-        Driver.getDriver().navigate().refresh();
-        BrowserUtilities.jsScroll(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
-        Driver.getDriver().navigate().refresh();
-        BrowserUtilities.jsScrollClick(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
+        BrowserUtilities.getActions().moveToElement(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage)).click().perform();
+        if (Driver.getDriver().getTitle().equals("Automation Exercise")) {
+            Driver.getDriver().navigate().refresh();
+            BrowserUtilities.jsScrollClick(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
+        }
     }
+
 
     @FindBy(css = "div.product-information h2")
     public WebElement productName;
@@ -260,13 +282,8 @@ public class AutomationExercisePage {
     public void addItemWithGivenQuantity(int quantity) {
         for (int i = 0; i < quantity; i++) {
             selectAnyViewProductButtonOnTheHomePage();
-            try {
-                BrowserUtilities.jsScrollClick(addToCartButton);
-
-            } catch (Exception exception) {
-                Driver.getDriver().navigate().refresh();
-                BrowserUtilities.jsScrollClick(addToCartButton);
-            }
+            closeAdWindowByCheckingPageTitle("Automation Exercise - Product Details");
+            BrowserUtilities.jsScrollClick(addToCartButton);
             Driver.getDriver().navigate().back();
             Driver.getDriver().navigate().refresh();
         }
@@ -414,8 +431,7 @@ public class AutomationExercisePage {
                 .sendKeys(BrowserUtilities.getFaker().number().numberBetween(1, 31) + "")
                 .sendKeys(Keys.TAB)
                 .sendKeys(BrowserUtilities.getFaker().number().numberBetween(2019, 2029) + "")
-                .sendKeys(Keys.TAB)
-                .click(payAndConfirmOrder).perform();
+                .perform();
 
     }
 

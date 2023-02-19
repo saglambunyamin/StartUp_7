@@ -37,10 +37,11 @@ public class TestCase14_PlaceOrderRegisterWhileCheckout_Mustafa {
         AutomationExercisePage pageObject = new AutomationExercisePage();
 
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
+        pageObject.closeAdWindowByCheckingPageTitle("Automation Exercise");
 
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise");
 
-        //4. Add products to cart
+        //4. Add products to cart randomly with given quantity
         pageObject.addItemWithGivenQuantity(3);
 
         //5. Click 'Cart' button
@@ -82,6 +83,7 @@ public class TestCase14_PlaceOrderRegisterWhileCheckout_Mustafa {
 
         //18. Verify success message 'Your order has been placed successfully!'
         BrowserUtilities.jsScroll(pageObject.subscriptionMailBox);
+        BrowserUtilities.jsScrollClick(pageObject.payAndConfirmOrder);
         Assert.assertTrue(pageObject.orderSuccessfullyPlacedMessage.isDisplayed());
         //Assert.assertEquals(pageObject.orderSuccessfullyPlacedMessage.getText(),"Your order has been placed successfully!");
 
