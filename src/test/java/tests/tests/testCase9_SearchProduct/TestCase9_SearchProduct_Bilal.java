@@ -29,7 +29,7 @@ public class TestCase9_SearchProduct_Bilal {
 
         //    4. Click on 'Products' button
         HomePage homePage= new HomePage();
-        homePage.closeAdPage_AfterHomePage(homePage.productsButton);
+        homePage.click_and_closeAdPage_AfterHomePage(homePage.productsButton);
 
 
         //    5. Verify user is navigated to ALL PRODUCTS page successfully

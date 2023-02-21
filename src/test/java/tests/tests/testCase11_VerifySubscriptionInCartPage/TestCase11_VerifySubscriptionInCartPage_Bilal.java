@@ -22,7 +22,7 @@ public class TestCase11_VerifySubscriptionInCartPage_Bilal {
 
         //4. Click 'Cart' button
         HomePage homePage=new HomePage();
-        homePage.closeAdPage_AfterHomePage(homePage.cartButton);
+        homePage.click_and_closeAdPage_AfterHomePage(homePage.cartButton);
 
         //5. Scroll down to footer
         View_cartPage view_cartPage=new View_cartPage();
