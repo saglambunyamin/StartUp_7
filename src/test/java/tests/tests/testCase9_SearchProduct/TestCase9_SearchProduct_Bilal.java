@@ -30,9 +30,8 @@ public class TestCase9_SearchProduct_Bilal {
         //    4. Click on 'Products' button
         HomePage homePage= new HomePage();
         BrowserUtilities.jsScroll(homePage.productsButton);
-        AutomationExercisePage pageObject=new AutomationExercisePage();
-        pageObject.closeAdWindowByCheckingPageTitle("Automation Exercise");
-        homePage.productsButton.click();
+        homePage.closeAdPage_AfterHomePage(homePage.productsButton);
+
 
         //    5. Verify user is navigated to ALL PRODUCTS page successfully
         BrowserUtilities.verifyPageTitle(Driver.getDriver(),"Automation Exercise - All Products");
