@@ -38,7 +38,7 @@ public class HomePage {
     //----------------------------------------------------------------------//
                     //Methods about HomePage//
 
-    public void closeAdPage_AfterHomePage(WebElement webElement){
+    public void click_and_closeAdPage_AfterHomePage(WebElement webElement){
         webElement.click();
         BrowserUtilities.sleep(2);
         if (Driver.getDriver().getTitle().equals("Automation Exercise")){
@@ -47,7 +47,7 @@ public class HomePage {
         }
     }
 
-    public void closeAdPage_AfterAllPage(WebElement webElement, String currentTitle){
+    public void click_and_closeAdPage_AfterAllPages(WebElement webElement, String currentTitle){
         webElement.click();
         BrowserUtilities.sleep(2);
         if (Driver.getDriver().getTitle().equals(currentTitle)){
@@ -56,20 +56,7 @@ public class HomePage {
         }
     }
 
-    public void closeAdPage_AfterHomePage2(){
-        if (Driver.getDriver().getTitle().equals("Automation Exercise")){
 
-            Driver.getDriver().switchTo().frame("aswift_5");
-            if (Driver.getDriver().findElement(By.xpath("//div[@id='dismiss-button']")).isDisplayed()){
-                Driver.getDriver().findElement(By.xpath("//div[@id='dismiss-button']")).click();
-            }else {
-                Driver.getDriver().switchTo().frame("ad_iframe");
-                Driver.getDriver().findElement(By.xpath("//div[@id='dismiss-button']")).click();
-            }
-
-            Driver.getDriver().switchTo().parentFrame();
-        }
-    }
 
 
 
