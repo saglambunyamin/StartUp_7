@@ -29,7 +29,6 @@ public class TestCase9_SearchProduct_Bilal {
 
         //    4. Click on 'Products' button
         HomePage homePage= new HomePage();
-        BrowserUtilities.jsScroll(homePage.productsButton);
         homePage.closeAdPage_AfterHomePage(homePage.productsButton);
 
 
