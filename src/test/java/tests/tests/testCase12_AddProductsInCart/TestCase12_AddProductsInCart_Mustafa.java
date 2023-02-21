@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AutomationExercisePage;
+import pages.MyPages_Bilal.HomePage;
 import utilities.BrowserUtilities;
 import utilities.ConfigurationReader;
 import utilities.Driver;
@@ -31,7 +32,7 @@ public class TestCase12_AddProductsInCart_Mustafa {
 
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise");
 
-        pageObject.forceToClickIfAdDisplayed(pageObject.productButton);
+        new HomePage().closeAdPage_AfterHomePage(pageObject.productButton);
 
         /*5. Hover over first product and click 'Add to cart'
           6. Click 'Continue Shopping' button*/
@@ -55,6 +56,9 @@ public class TestCase12_AddProductsInCart_Mustafa {
         for (int i = 3; i < 6; i++) {
             WebElement verifyPriceQuantityTotal = Driver.getDriver().findElement(By.xpath("//tbody/tr[1]/td[" + i + "]"));
             Assert.assertTrue(verifyPriceQuantityTotal.isDisplayed());
+
+            WebElement verifyPriceQuantityTotal2 = Driver.getDriver().findElement(By.xpath("//tbody/tr[2]/td[" + i + "]"));
+            Assert.assertTrue(verifyPriceQuantityTotal2.isDisplayed());
         }
 
         Driver.getDriver().close();
