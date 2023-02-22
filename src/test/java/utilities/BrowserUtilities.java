@@ -139,7 +139,7 @@ public class BrowserUtilities {
         return foo;
     }
 
-    public static void closeAdPage_AfterHomePage(WebElement webElement){
+    public static void closeAdPage_afterHomePage(WebElement webElement){
         webElement.click();
         BrowserUtilities.sleep(2);
         if (Driver.getDriver().getTitle().equals("Automation Exercise")){
