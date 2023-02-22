@@ -30,7 +30,7 @@ import utilities.Driver;
 17. Verify 'ACCOUNT DELETED!' and click 'Continue' button*/
 public class TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa {
 
-    public String emailAddress="startup_7@gmail.com";
+    public String emailAddress="startup87@gmail.com";
 
     public String password="startup007";
 
