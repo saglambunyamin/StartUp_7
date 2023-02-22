@@ -215,7 +215,7 @@ public class AutomationExercisePage {
 
     public void selectAnyViewProductButtonOnTheHomePage() {
         int anyViewProductButtonIndexOnTheHomePage = BrowserUtilities.random().nextInt(allViewProductButtonsOnTheHomePage.size());
-        BrowserUtilities.getActions().moveToElement(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage)).click().perform();
+        BrowserUtilities.jsScrollClick(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
         if (Driver.getDriver().getTitle().equals("Automation Exercise")) {
             Driver.getDriver().navigate().refresh();
             BrowserUtilities.jsScrollClick(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
@@ -251,6 +251,10 @@ public class AutomationExercisePage {
     public WebElement productBrand;
 
     public void verifyAllProductDetailsVisibility() {
+        if(!Driver.getDriver().getTitle().equals("Automation Exercise - Product Details")){
+            Driver.getDriver().navigate().refresh();
+        }
+
         List<WebElement> allDetails = new ArrayList<>();
         allDetails.addAll(Arrays.asList(productCondition, productCategory, productAvailability, productPrice, productBrand, productName, productQuantity));
 
