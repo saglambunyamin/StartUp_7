@@ -7,9 +7,11 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import tests.tests.testCase14_PlaceOrderRegisterWhileCheckout.TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa;
+import tests.tests.testCase5_RegisterUserWithExistingEmail.TestCase5_RegisterUserWithExistingEmail_Mustafa;
 import utilities.BrowserUtilities;
+import utilities.ConfigurationReader;
 import utilities.Driver;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -479,6 +481,9 @@ public class AutomationExercisePage {
     @FindBy(css = "[type~=submit]:nth-child(4)")
     public WebElement loginButton;
 
+    @FindBy(xpath = "//a[.=' Logout']")
+    public WebElement logoutButton;
+
     /**
      * No parameters.
      * When we call this method, it will directly login using
@@ -490,6 +495,62 @@ public class AutomationExercisePage {
         this.loginEmailAddressBox.sendKeys("cydeo06@gmail.com");
         this.loginPasswordBox.sendKeys("12345");
         this.loginButton.click();
+    }
+
+    public void loginAfterCreatingNewAccount(){
+        createNewAccountInfoBeforeTest();
+        loginEmailAddressBox.sendKeys(new TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa().emailAddress);
+        loginPasswordBox.sendKeys(new TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa().password);
+        loginButton.click();
+    }
+
+    public void createNewAccountInfoBeforeTest() {
+
+        BrowserUtilities.getActions().click(newUserSignupNameBox)
+                .sendKeys(BrowserUtilities.getFaker().name().fullName())
+                .sendKeys(Keys.TAB)
+                .sendKeys(new TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa().emailAddress)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.ENTER).perform();
+
+        Assert.assertTrue(enterAccountInfoText.isDisplayed());
+
+        BrowserUtilities.getActions().click(genderRadioButton)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys(new TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa().password).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys("" + BrowserUtilities.getFaker().number().numberBetween(1, 31)).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys("May").pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys("" + BrowserUtilities.getFaker().number().numberBetween(1900, 2021)).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().name().firstName()).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().name().lastName()).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().company().name()).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().address().fullAddress()).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys("Canada")
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().address().state()).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().address().city()).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().address().zipCode()).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().phoneNumber().cellPhone()).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.ENTER).perform();
+
+        safeClickByCheckingThePageTitle(signupLoginButton,"Automation Exercise - Account Created");
+        safeClickByCheckingThePageTitle(logoutButton,"Automation Exercise");
     }
 
 

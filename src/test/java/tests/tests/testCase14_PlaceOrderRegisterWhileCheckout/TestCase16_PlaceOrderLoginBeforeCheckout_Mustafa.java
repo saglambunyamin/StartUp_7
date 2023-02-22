@@ -1,5 +1,8 @@
 package tests.tests.testCase14_PlaceOrderRegisterWhileCheckout;
 
+
+import org.openqa.selenium.Keys;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AutomationExercisePage;
@@ -26,6 +29,11 @@ import utilities.Driver;
 16. Click 'Delete Account' button
 17. Verify 'ACCOUNT DELETED!' and click 'Continue' button*/
 public class TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa {
+
+    public String emailAddress="startup07@gmail.com";
+
+    public String password="startup007";
+
     @Test
     public void testCase16() {
         /*1. Launch browser
@@ -42,7 +50,8 @@ public class TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa {
         pageObject.signupLoginButton.click();
 
         //5. Fill email, password and click 'Login' button
-        pageObject.loginWithExistingAccountInfo();
+        //pageObject.loginWithExistingAccountInfo();
+        pageObject.loginAfterCreatingNewAccount();
 
         //6. Verify ' Logged in as username' at top
         Assert.assertTrue(pageObject.loggedInAsUsernameText.isDisplayed());
@@ -75,12 +84,12 @@ public class TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa {
         BrowserUtilities.jsScrollClick(pageObject.payAndConfirmOrder);
         Assert.assertTrue(pageObject.orderSuccessfullyPlacedMessage.isDisplayed());
 
-        //17. Click 'Delete Account' button
+        //16. Click 'Delete Account' button
         BrowserUtilities.jsScrollClick( pageObject.deleteAccountButton);
 
-        //18. Verify 'ACCOUNT DELETED!' and click 'Continue' button
+        //17. Verify 'ACCOUNT DELETED!' and click 'Continue' button
         pageObject.verifyAccountDeletedTextAndClickContButton();
 
-        Driver.getDriver().close();
+        Driver.closeDriver();
     }
 }
