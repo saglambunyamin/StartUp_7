@@ -38,6 +38,15 @@ public class HomePage {
     //----------------------------------------------------------------------//
                     //Methods about HomePage//
 
+    public static void closeAdPage_AfterHomePage(WebElement webElement){
+        webElement.click();
+        BrowserUtilities.sleep(2);
+        if (Driver.getDriver().getTitle().equals("Automation Exercise")){
+            Driver.getDriver().navigate().refresh();
+            webElement.click();
+        }
+    }
+
     public void click_and_closeAdPage_AfterHomePage(WebElement webElement){
         webElement.click();
         BrowserUtilities.sleep(2);
