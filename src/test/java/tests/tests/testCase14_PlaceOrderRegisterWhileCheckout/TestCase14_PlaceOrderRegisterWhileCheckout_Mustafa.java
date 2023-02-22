@@ -37,7 +37,6 @@ public class TestCase14_PlaceOrderRegisterWhileCheckout_Mustafa {
         AutomationExercisePage pageObject = new AutomationExercisePage();
 
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
-        pageObject.closeAdWindowByCheckingPageTitle("Automation Exercise");
 
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise");
 

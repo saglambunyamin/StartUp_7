@@ -10,6 +10,7 @@ import org.testng.Assert;
 import tests.tests.testCase16.TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa;
 import utilities.BrowserUtilities;
 import utilities.Driver;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -108,8 +109,8 @@ public class AutomationExercisePage {
     @FindBy(css = "iframe#aswift_3")
     public WebElement adWindowIframe3;
 
-    public void closeAdWindowByCheckingFrames( String pageTitle) {
-        if (Driver.getDriver().getTitle().equals(pageTitle)){
+    public void closeAdWindowByCheckingFrames(String pageTitle) {
+        if (Driver.getDriver().getTitle().equals(pageTitle)) {
             if (adWindowIframe1.isDisplayed()) {
                 Driver.getDriver().navigate().refresh();
             } else if (adWindowIframe2.isDisplayed()) {
@@ -213,12 +214,28 @@ public class AutomationExercisePage {
     @FindBy(xpath = "//a[.='View Product']")
     public List<WebElement> allViewProductButtonsOnTheHomePage;
 
+    public void addItemWithGivenQuantity(int quantity) {
+        for (int i = 0; i < quantity; i++) {
+            selectAnyViewProductButtonOnTheHomePage();
+            safeClickByCheckingThePageTitle(addToCartButton, "Automation Exercise - Product Details");
+            Driver.getDriver().navigate().back();
+        }
+    }
+
     public void selectAnyViewProductButtonOnTheHomePage() {
         int anyViewProductButtonIndexOnTheHomePage = BrowserUtilities.random().nextInt(allViewProductButtonsOnTheHomePage.size());
-        BrowserUtilities.jsScrollClick(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
+        BrowserUtilities.clickWithJS(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
         if (Driver.getDriver().getTitle().equals("Automation Exercise")) {
             Driver.getDriver().navigate().refresh();
-            BrowserUtilities.jsScrollClick(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
+            BrowserUtilities.clickWithJS(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
+        }
+    }
+
+    public void safeClickByCheckingThePageTitle(WebElement webElement, String currentTitle) {
+        BrowserUtilities.clickWithJS(webElement);
+        if (Driver.getDriver().getTitle().equals(currentTitle)) {
+            Driver.getDriver().navigate().refresh();
+            BrowserUtilities.clickWithJS(webElement);
         }
     }
 
@@ -251,7 +268,7 @@ public class AutomationExercisePage {
     public WebElement productBrand;
 
     public void verifyAllProductDetailsVisibility() {
-        if(!Driver.getDriver().getTitle().equals("Automation Exercise - Product Details")){
+        if (!Driver.getDriver().getTitle().equals("Automation Exercise - Product Details")) {
             Driver.getDriver().navigate().refresh();
         }
 
@@ -284,16 +301,6 @@ public class AutomationExercisePage {
     //Test Case 14
     @FindBy(css = "button.btn.btn-default.cart i.fa.fa-shopping-cart")
     public WebElement addToCartButton;
-
-    public void addItemWithGivenQuantity(int quantity) {
-        for (int i = 0; i < quantity; i++) {
-            selectAnyViewProductButtonOnTheHomePage();
-            closeAdWindowByCheckingPageTitle("Automation Exercise - Product Details");
-            BrowserUtilities.jsScrollClick(addToCartButton);
-            Driver.getDriver().navigate().back();
-            Driver.getDriver().navigate().refresh();
-        }
-    }
 
     @FindBy(css = "ol.breadcrumb li.active")
     public WebElement shoppingCartText;
@@ -373,17 +380,9 @@ public class AutomationExercisePage {
 
     public void verifyAccountCreation() {
         Assert.assertEquals(accountCreationText.getText(), "ACCOUNT CREATED!", "ACCOUNT CREATED! is not visible");
-        safeClickByCheckingThePageTitle(continueButton,"Automation Exercise - Account Created");
+        safeClickByCheckingThePageTitle(continueButton, "Automation Exercise - Account Created");
     }
 
-    public void safeClickByCheckingThePageTitle(WebElement webElement, String currentTitle){
-        webElement.click();
-        BrowserUtilities.sleep(2);
-        if (Driver.getDriver().getTitle().equals(currentTitle)){
-            Driver.getDriver().navigate().refresh();
-            webElement.click();
-        }
-    }
 
     @FindBy(css = "i.fa.fa-user")
     public WebElement loggedInAsUsernameText;
@@ -485,17 +484,17 @@ public class AutomationExercisePage {
     /**
      * No parameters.
      * When we call this method, it will directly login using
-     *
+     * <p>
      * Username: cydeo06@gmail.com
      * Password: 12345
      */
-    public void loginWithExistingAccountInfo(){
+    public void loginWithExistingAccountInfo() {
         this.loginEmailAddressBox.sendKeys("cydeo06@gmail.com");
         this.loginPasswordBox.sendKeys("12345");
         this.loginButton.click();
     }
 
-    public void loginAfterCreatingNewAccount(){
+    public void loginAfterCreatingNewAccount() {
         createNewAccountInfoBeforeTest();
         loginEmailAddressBox.sendKeys(new TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa().emailAddress);
         loginPasswordBox.sendKeys(new TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa().password);
@@ -547,10 +546,9 @@ public class AutomationExercisePage {
                 .sendKeys(Keys.TAB)
                 .sendKeys(Keys.ENTER).perform();
 
-        safeClickByCheckingThePageTitle(signupLoginButton,"Automation Exercise - Account Created");
-        safeClickByCheckingThePageTitle(logoutButton,"Automation Exercise");
+        safeClickByCheckingThePageTitle(signupLoginButton, "Automation Exercise - Account Created");
+        safeClickByCheckingThePageTitle(logoutButton, "Automation Exercise");
     }
-
 
 
 }
