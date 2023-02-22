@@ -23,7 +23,7 @@ public class TestCase9_SearchProduct_Ali {
 
         //4. Click on 'Products' button
 
-        BrowserUtilities.closeAdPage_AfterHomePage(pageObject.productsButton);
+        BrowserUtilities.closeAdPage_afterHomePage(pageObject.productsButton);
 
 
         //5. Verify user is navigated to ALL PRODUCTS page successfully
@@ -33,13 +33,17 @@ public class TestCase9_SearchProduct_Ali {
 
 
         //6. Enter product name in search input and click search button
-        pageObject.searchProductBox.sendKeys("Frozen Tops For Kids");
+        pageObject.searchProductBox.sendKeys("Dress");
         pageObject.searchButton.click();
 
         //7. Verify 'SEARCHED PRODUCTS' is visible
         Assert.assertTrue(pageObject.searchedProducts.isDisplayed(),"SEARCHED PRODUCTS is not visible");
 
         //8. Verify all the products related to search are visible
+
+        pageObject.verifyAllTheProductsRelatedToSearch();
+
+
 
     }
 }
