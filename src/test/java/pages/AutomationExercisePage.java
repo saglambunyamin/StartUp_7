@@ -422,7 +422,17 @@ public class AutomationExercisePage {
             textArea.sendKeys(BrowserUtilities.getFaker().chuckNorris().fact());
 
         }
-        addCommentPlaceOrder.click();
+        BrowserUtilities.clickWithJS(addCommentPlaceOrder);
+
+        if(Driver.getDriver().getTitle().equals("Automation Exercise - Checkout")){
+            Driver.getDriver().navigate().refresh();
+
+            for (int i = 0; i < 5; i++) {
+                textArea.sendKeys(BrowserUtilities.getFaker().chuckNorris().fact());
+
+            }
+            addCommentPlaceOrder.click();
+        }
     }
 
     @FindBy(css = "input[name=\"name_on_card\"]")
