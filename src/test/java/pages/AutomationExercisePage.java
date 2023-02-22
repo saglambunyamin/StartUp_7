@@ -215,7 +215,7 @@ public class AutomationExercisePage {
 
     public void selectAnyViewProductButtonOnTheHomePage() {
         int anyViewProductButtonIndexOnTheHomePage = BrowserUtilities.random().nextInt(allViewProductButtonsOnTheHomePage.size());
-        BrowserUtilities.getActions().moveToElement(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage)).click().perform();
+        BrowserUtilities.jsScrollClick(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
         if (Driver.getDriver().getTitle().equals("Automation Exercise")) {
             Driver.getDriver().navigate().refresh();
             BrowserUtilities.jsScrollClick(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
@@ -251,6 +251,10 @@ public class AutomationExercisePage {
     public WebElement productBrand;
 
     public void verifyAllProductDetailsVisibility() {
+        if(!Driver.getDriver().getTitle().equals("Automation Exercise - Product Details")){
+            Driver.getDriver().navigate().refresh();
+        }
+
         List<WebElement> allDetails = new ArrayList<>();
         allDetails.addAll(Arrays.asList(productCondition, productCategory, productAvailability, productPrice, productBrand, productName, productQuantity));
 
@@ -369,8 +373,16 @@ public class AutomationExercisePage {
 
     public void verifyAccountCreation() {
         Assert.assertEquals(accountCreationText.getText(), "ACCOUNT CREATED!", "ACCOUNT CREATED! is not visible");
-        BrowserUtilities.jsScrollClick(continueButton);
-        Driver.getDriver().navigate().refresh();
+        safeClickByCheckingThePageTitle(continueButton,"Automation Exercise - Account Created");
+    }
+
+    public void safeClickByCheckingThePageTitle(WebElement webElement, String currentTitle){
+        webElement.click();
+        BrowserUtilities.sleep(2);
+        if (Driver.getDriver().getTitle().equals(currentTitle)){
+            Driver.getDriver().navigate().refresh();
+            webElement.click();
+        }
     }
 
     @FindBy(css = "i.fa.fa-user")
@@ -455,6 +467,32 @@ public class AutomationExercisePage {
         Assert.assertTrue(accountDeletedText.isDisplayed(), "ACCOUNT DELETED! is not visible");
         continueButton.click();
     }
+
+    //Test Case 16
+
+    @FindBy(css = ".login-form form input:nth-child(2)")
+    public WebElement loginEmailAddressBox;
+
+    @FindBy(css = ".login-form form input:nth-child(3)")
+    public WebElement loginPasswordBox;
+
+    @FindBy(css = "[type~=submit]:nth-child(4)")
+    public WebElement loginButton;
+
+    /**
+     * No parameters.
+     * When we call this method, it will directly login using
+     *
+     * Username: cydeo06@gmail.com
+     * Password: 12345
+     */
+    public void loginWithExistingAccountInfo(){
+        this.loginEmailAddressBox.sendKeys("cydeo06@gmail.com");
+        this.loginPasswordBox.sendKeys("12345");
+        this.loginButton.click();
+    }
+
+
 
 }
 

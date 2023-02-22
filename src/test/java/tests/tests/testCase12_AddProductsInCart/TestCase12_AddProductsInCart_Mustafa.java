@@ -54,11 +54,11 @@ public class TestCase12_AddProductsInCart_Mustafa {
 
         //10. Verify their prices, quantity and total price*/
         for (int i = 3; i < 6; i++) {
-            WebElement verifyPriceQuantityTotal = Driver.getDriver().findElement(By.xpath("//tbody/tr[1]/td[" + i + "]"));
-            Assert.assertTrue(verifyPriceQuantityTotal.isDisplayed());
+            WebElement verifyPriceQuantityTotalInFirstRow = Driver.getDriver().findElement(By.xpath("//tbody/tr[1]/td[" + i + "]"));
+            Assert.assertTrue(verifyPriceQuantityTotalInFirstRow.isDisplayed());
 
-            WebElement verifyPriceQuantityTotal2 = Driver.getDriver().findElement(By.xpath("//tbody/tr[2]/td[" + i + "]"));
-            Assert.assertTrue(verifyPriceQuantityTotal2.isDisplayed());
+            WebElement verifyPriceQuantityTotalInSecondRow = Driver.getDriver().findElement(By.xpath("//tbody/tr[2]/td[" + i + "]"));
+            Assert.assertTrue(verifyPriceQuantityTotalInSecondRow.isDisplayed());
         }
 
         Driver.getDriver().close();
