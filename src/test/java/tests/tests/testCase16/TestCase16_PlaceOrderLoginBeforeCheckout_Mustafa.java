@@ -1,4 +1,4 @@
-package tests.tests.testCase14_PlaceOrderRegisterWhileCheckout;
+package tests.tests.testCase16;
 
 
 import org.openqa.selenium.Keys;

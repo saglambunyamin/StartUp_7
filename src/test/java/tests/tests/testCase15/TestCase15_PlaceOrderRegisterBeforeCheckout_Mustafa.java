@@ -1,4 +1,4 @@
-package tests.tests.testCase14_PlaceOrderRegisterWhileCheckout;
+package tests.tests.testCase15;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
