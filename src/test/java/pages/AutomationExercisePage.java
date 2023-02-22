@@ -560,6 +560,13 @@ public class AutomationExercisePage {
         safeClickByCheckingThePageTitle(logoutButton, "Automation Exercise");
     }
 
+    //Test Case 16
+
+    @FindBy(css = "a.cart_quantity_delete i")
+    public List<WebElement> numberOfItemsInCart;
+    @FindBy(xpath = "(//td[@class='cart_delete']/a/i)[1]")
+    public WebElement deleteFirstItemsInCart;
+
 
 }
 
