@@ -52,8 +52,6 @@ int numberOfElementInCartAfterDeleting;
         //8. Verify that product is removed from the cart
         Assert.assertFalse(numberOfElementInCartAfterDeleting!=numberOfElementInCartBeforeDeleting);
 
-
-
         Driver.closeDriver();
     }
 }
