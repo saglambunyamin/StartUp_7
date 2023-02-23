@@ -24,7 +24,7 @@ int numberOfElementInCartAfterDeleting;
 
 
     @Test
-    public void testCase16() {
+    public void testCase17() {
         /*1. Launch browser
         2. Navigate to url 'http://automationexercise.com'
         3. Verify that home page is visible successfully*/
