@@ -30,8 +30,6 @@ ProductsPage product =new ProductsPage();
         //4. Click 'View Product' for any product on home page
         automationExercisePage.selectAnyViewProductButtonOnTheHomePage();
 
-       // homePage.closeAdPage_AfterHomePage();
-
         //5. Verify product detail is opened
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise - Product Details");
 
@@ -40,8 +38,10 @@ ProductsPage product =new ProductsPage();
         automationExercisePage.quantityBox.clear();
         automationExercisePage.quantityBox.sendKeys("4");
 
+        //7. Click 'Add to cart' button
         automationExercisePage.addToCartButton.click();
 
+        //8. Click 'View Cart' button
         automationExercisePage.viewCartButton.click();
 
     }
