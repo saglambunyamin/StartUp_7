@@ -30,7 +30,7 @@ ProductsPage product =new ProductsPage();
         //4. Click 'View Product' for any product on home page
         automationExercisePage.selectAnyViewProductButtonOnTheHomePage();
 
-        homePage.closeAdPage_AfterHomePage();
+       // homePage.closeAdPage_AfterHomePage();
 
         //5. Verify product detail is opened
         BrowserUtilities.verifyPageTitle(Driver.getDriver(), "Automation Exercise - Product Details");
