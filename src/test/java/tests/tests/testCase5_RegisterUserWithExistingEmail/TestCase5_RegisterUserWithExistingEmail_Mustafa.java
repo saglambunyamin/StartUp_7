@@ -24,8 +24,9 @@ public class TestCase5_RegisterUserWithExistingEmail_Mustafa extends TestBaseBef
     String userName = faker.name().username();
 
     public String emailAddress=faker.internet().emailAddress();
-    String password=faker.internet().password();
-    @Test()
+
+    public String password=faker.internet().password();
+    @Test
     public void test1() {
         driver.get(ConfigurationReader.getProperty("env"));
 

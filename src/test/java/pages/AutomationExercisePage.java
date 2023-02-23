@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import tests.tests.testCase16.TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa;
 import utilities.BrowserUtilities;
 import utilities.Driver;
 
@@ -108,8 +109,8 @@ public class AutomationExercisePage {
     @FindBy(css = "iframe#aswift_3")
     public WebElement adWindowIframe3;
 
-    public void closeAdWindowByCheckingFrames( String pageTitle) {
-        if (Driver.getDriver().getTitle().equals(pageTitle)){
+    public void closeAdWindowByCheckingFrames(String pageTitle) {
+        if (Driver.getDriver().getTitle().equals(pageTitle)) {
             if (adWindowIframe1.isDisplayed()) {
                 Driver.getDriver().navigate().refresh();
             } else if (adWindowIframe2.isDisplayed()) {
@@ -213,12 +214,28 @@ public class AutomationExercisePage {
     @FindBy(xpath = "//a[.='View Product']")
     public List<WebElement> allViewProductButtonsOnTheHomePage;
 
+    public void addItemWithGivenQuantity(int quantity) {
+        for (int i = 0; i < quantity; i++) {
+            selectAnyViewProductButtonOnTheHomePage();
+            safeClickByCheckingThePageTitle(addToCartButton, "Automation Exercise - Product Details");
+            Driver.getDriver().navigate().back();
+        }
+    }
+
     public void selectAnyViewProductButtonOnTheHomePage() {
         int anyViewProductButtonIndexOnTheHomePage = BrowserUtilities.random().nextInt(allViewProductButtonsOnTheHomePage.size());
-        BrowserUtilities.jsScrollClick(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
+        BrowserUtilities.clickWithJS(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
         if (Driver.getDriver().getTitle().equals("Automation Exercise")) {
             Driver.getDriver().navigate().refresh();
-            BrowserUtilities.jsScrollClick(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
+            BrowserUtilities.clickWithJS(allViewProductButtonsOnTheHomePage.get(anyViewProductButtonIndexOnTheHomePage));
+        }
+    }
+
+    public void safeClickByCheckingThePageTitle(WebElement webElement, String currentTitle) {
+        BrowserUtilities.clickWithJS(webElement);
+        if (Driver.getDriver().getTitle().equals(currentTitle)) {
+            Driver.getDriver().navigate().refresh();
+            BrowserUtilities.clickWithJS(webElement);
         }
     }
 
@@ -251,7 +268,7 @@ public class AutomationExercisePage {
     public WebElement productBrand;
 
     public void verifyAllProductDetailsVisibility() {
-        if(!Driver.getDriver().getTitle().equals("Automation Exercise - Product Details")){
+        if (!Driver.getDriver().getTitle().equals("Automation Exercise - Product Details")) {
             Driver.getDriver().navigate().refresh();
         }
 
@@ -284,16 +301,6 @@ public class AutomationExercisePage {
     //Test Case 14
     @FindBy(css = "button.btn.btn-default.cart i.fa.fa-shopping-cart")
     public WebElement addToCartButton;
-
-    public void addItemWithGivenQuantity(int quantity) {
-        for (int i = 0; i < quantity; i++) {
-            selectAnyViewProductButtonOnTheHomePage();
-            closeAdWindowByCheckingPageTitle("Automation Exercise - Product Details");
-            BrowserUtilities.jsScrollClick(addToCartButton);
-            Driver.getDriver().navigate().back();
-            Driver.getDriver().navigate().refresh();
-        }
-    }
 
     @FindBy(css = "ol.breadcrumb li.active")
     public WebElement shoppingCartText;
@@ -373,17 +380,9 @@ public class AutomationExercisePage {
 
     public void verifyAccountCreation() {
         Assert.assertEquals(accountCreationText.getText(), "ACCOUNT CREATED!", "ACCOUNT CREATED! is not visible");
-        safeClickByCheckingThePageTitle(continueButton,"Automation Exercise - Account Created");
+        safeClickByCheckingThePageTitle(continueButton, "Automation Exercise - Account Created");
     }
 
-    public void safeClickByCheckingThePageTitle(WebElement webElement, String currentTitle){
-        webElement.click();
-        BrowserUtilities.sleep(2);
-        if (Driver.getDriver().getTitle().equals(currentTitle)){
-            Driver.getDriver().navigate().refresh();
-            webElement.click();
-        }
-    }
 
     @FindBy(css = "i.fa.fa-user")
     public WebElement loggedInAsUsernameText;
@@ -423,7 +422,17 @@ public class AutomationExercisePage {
             textArea.sendKeys(BrowserUtilities.getFaker().chuckNorris().fact());
 
         }
-        addCommentPlaceOrder.click();
+        BrowserUtilities.clickWithJS(addCommentPlaceOrder);
+
+        if(Driver.getDriver().getTitle().equals("Automation Exercise - Checkout")){
+            Driver.getDriver().navigate().refresh();
+
+            for (int i = 0; i < 5; i++) {
+                textArea.sendKeys(BrowserUtilities.getFaker().chuckNorris().fact());
+
+            }
+            addCommentPlaceOrder.click();
+        }
     }
 
     @FindBy(css = "input[name=\"name_on_card\"]")
@@ -479,19 +488,84 @@ public class AutomationExercisePage {
     @FindBy(css = "[type~=submit]:nth-child(4)")
     public WebElement loginButton;
 
+    @FindBy(xpath = "//a[.=' Logout']")
+    public WebElement logoutButton;
+
     /**
      * No parameters.
      * When we call this method, it will directly login using
-     *
+     * <p>
      * Username: cydeo06@gmail.com
      * Password: 12345
      */
-    public void loginWithExistingAccountInfo(){
+    public void loginWithExistingAccountInfo() {
         this.loginEmailAddressBox.sendKeys("cydeo06@gmail.com");
         this.loginPasswordBox.sendKeys("12345");
         this.loginButton.click();
     }
 
+    public void loginAfterCreatingNewAccount() {
+        createNewAccountInfoBeforeTest();
+        loginEmailAddressBox.sendKeys(new TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa().emailAddress);
+        loginPasswordBox.sendKeys(new TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa().password);
+        loginButton.click();
+    }
+
+    public void createNewAccountInfoBeforeTest() {
+
+        BrowserUtilities.getActions().click(newUserSignupNameBox)
+                .sendKeys(BrowserUtilities.getFaker().name().fullName())
+                .sendKeys(Keys.TAB)
+                .sendKeys(new TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa().emailAddress)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.ENTER).perform();
+
+        Assert.assertTrue(enterAccountInfoText.isDisplayed());
+
+        BrowserUtilities.getActions().click(genderRadioButton)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys(new TestCase16_PlaceOrderLoginBeforeCheckout_Mustafa().password).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys("" + BrowserUtilities.getFaker().number().numberBetween(1, 31)).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys("May").pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys("" + BrowserUtilities.getFaker().number().numberBetween(1900, 2021)).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().name().firstName()).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().name().lastName()).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().company().name()).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().address().fullAddress()).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys("Canada")
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().address().state()).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().address().city()).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().address().zipCode()).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(BrowserUtilities.getFaker().phoneNumber().cellPhone()).pause(1000)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.ENTER).perform();
+
+        safeClickByCheckingThePageTitle(signupLoginButton, "Automation Exercise - Account Created");
+        safeClickByCheckingThePageTitle(logoutButton, "Automation Exercise");
+    }
+
+    //Test Case 16
+
+    @FindBy(css = "a.cart_quantity_delete i")
+    public List<WebElement> numberOfItemsInCart;
+    @FindBy(xpath = "(//td[@class='cart_delete']/a/i)[1]")
+    public WebElement deleteFirstItemsInCart;
 
 
 }
