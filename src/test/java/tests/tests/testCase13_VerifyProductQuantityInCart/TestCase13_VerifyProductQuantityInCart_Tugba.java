@@ -39,8 +39,10 @@ ProductsPage product =new ProductsPage();
 
         automationExercisePage.quantityBox.sendKeys("4");
 
+        //7. Click 'Add to cart' button
         automationExercisePage.addToCartButton.click();
 
+        //8. Click 'View Cart' button
         automationExercisePage.viewCartButton.click();
     }
 }
