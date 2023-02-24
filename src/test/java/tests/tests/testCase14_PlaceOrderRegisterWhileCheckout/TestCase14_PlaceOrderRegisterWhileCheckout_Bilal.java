@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
+import pages.AutomationExercisePage;
 import pages.MyPages_Bilal.HomePage;
 import pages.MyPages_Bilal.ProductsPage;
 import pages.MyPages_Bilal.View_cartPage;
@@ -27,30 +28,24 @@ public class TestCase14_PlaceOrderRegisterWhileCheckout_Bilal {
         BrowserUtilities.verifyPageTitle(Driver.getDriver(),"Automation Exercise");
 
         //4. Add products to cart
-        HomePage homePage= new HomePage();
-        Random random= new Random();
-        Actions actions=new Actions(Driver.getDriver());
-        JavascriptExecutor js=(JavascriptExecutor) Driver.getDriver();
-
-
-            int randomNumber = random.nextInt(homePage.viewProductButtons.size());
-            System.out.println(randomNumber);
-            WebElement randomAddtoCart = Driver.getDriver().findElement(By.xpath("(//a[@class='btn btn-default add-to-cart'])["+randomNumber+"]"));
-            System.out.println(randomAddtoCart.getText());
-            js.executeScript("arguments[0].scrollIntoView(true);", randomAddtoCart);
-            BrowserUtilities.sleep(2);
-            actions.moveToElement(randomAddtoCart).pause(2000).click().perform();
-            //randomAddtoCart.click();
-            BrowserUtilities.sleep(2);
+        HomePage homePage=new HomePage();
+        for (int i = 1; i < 4; i++) {
+            //int randomNumber = BrowserUtilities.random().nextInt(homePage.viewProductButtons.size());
+            WebElement randomAddtoCart = Driver.getDriver().findElement(By.xpath("(//a[@class='btn btn-default add-to-cart'])["+i+"]"));
+            BrowserUtilities.clickWithJS(randomAddtoCart);
             homePage.continueShoppingButton.click();
-            BrowserUtilities.sleep(2);
-
-
+        }
 
             //5. Click 'Cart' button
-            //6. Verify that cart page is displayed
+        AutomationExercisePage pageObject=new AutomationExercisePage();
+        pageObject.safeClickByCheckingThePageTitle(homePage.cartButton, "Automation Exercise");
+
+        //6. Verify that cart page is displayed
+
             //7. Click Proceed To Checkout
+
             //8. Click 'Register / Login' button
+
             //9. Fill all details in Signup and create account
             //10. Verify 'ACCOUNT CREATED!' and click 'Continue' button
             //11. Verify ' Logged in as username' at top
